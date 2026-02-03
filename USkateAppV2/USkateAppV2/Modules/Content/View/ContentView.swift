@@ -55,8 +55,12 @@ struct ContentView: View {
 //        }
 //    }
     var body: some View {
-        VStack(spacing: 8) {
-            Image(.logo)
+        NavigationSplitView {
+            VStack(spacing: 8) {
+                Image(.logo)
+                Text(model.greeting)
+            }
+        } detail: {
             Text(model.greeting)
         }
     }

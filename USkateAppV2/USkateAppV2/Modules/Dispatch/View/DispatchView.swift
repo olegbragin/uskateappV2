@@ -29,6 +29,8 @@ struct DispatchView: View {
                         data: name
                     )
                 )
+            case .authorization:
+                AuthorizationView()
             default:
                 VStack(spacing: 8) {
                     Image(.logo)
@@ -38,6 +40,9 @@ struct DispatchView: View {
         }
         .task {
             await viewModel.fetchUserData()
+        }
+        .onOpenURL { url in
+            print(url)
         }
     }
 }
