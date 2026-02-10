@@ -24,11 +24,7 @@ struct DispatchView: View {
                     }
                 }
             case .content(let name):
-                ContentView(
-                    model: ContentModel(
-                        data: name
-                    )
-                )
+                RootView()
             case .authorization:
                 AuthorizationView()
             default:

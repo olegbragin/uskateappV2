@@ -14,14 +14,15 @@ struct USCalendarMonthModel: Identifiable {
     
     let weeks: [USCalendarWeekModel]
     
-    init(monthProvider: USCalendarMonthProvider) {
+    init(monthProvider: USCalendarMonthProvider, columnCount: Int) {
         self.monthProvider = monthProvider
         self.weeks = monthProvider.weeks.enumerated().map {
             USCalendarWeekModel(
                 weekNumber: $0.offset,
                 monthNumber: monthProvider.month,
                 year: monthProvider.year,
-                days: $0.element.days
+                days: $0.element.days,
+                columnCount: columnCount
             )
         }
         self.label = monthProvider.shortLocalizedMonthName()

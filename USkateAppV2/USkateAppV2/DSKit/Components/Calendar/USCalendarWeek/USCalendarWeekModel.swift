@@ -15,7 +15,7 @@ struct USCalendarWeekModel: Identifiable {
     let year: Int
     let days: [USCalendarDayModel]
     
-    init(weekNumber: Int, monthNumber: Int, year: Int, days: [USCalendarDayDataSource] = []) {
+    init(weekNumber: Int, monthNumber: Int, year: Int, days: [USCalendarDayDataSource] = [], columnCount: Int) {
         self.weekNumber = weekNumber
         self.monthNumber = monthNumber
         self.year = year
@@ -23,7 +23,8 @@ struct USCalendarWeekModel: Identifiable {
             USCalendarDayModel(
                 text: "\($0.number)",
                 isToday: $0.isToday,
-                isInCurrentMonth: $0.isInCurrentMonth
+                isInCurrentMonth: $0.isInCurrentMonth,
+                columnCount: columnCount
             )
         }
     }

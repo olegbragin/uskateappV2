@@ -57,7 +57,8 @@ struct USCalendarWeekView: View {
                 .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false),
                 .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false),
                 .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false)
-            ]
+            ],
+            columnCount: 2
         )
     )
 }

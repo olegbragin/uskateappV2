@@ -30,6 +30,6 @@ struct USCalendarMonthView: View {
 
 #Preview {
     USCalendarMonthView(
-        model: .init(monthProvider: .init(month: 1, year: 2026))
+        model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 3)
     )
 }

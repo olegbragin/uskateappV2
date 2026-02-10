@@ -13,7 +13,7 @@ struct USCalendarWeekHeaderModel {
     
     var weekHeader: [USCalendarDayModel] {
         return weekSymbols.map {
-            USCalendarDayModel(text: $0)
+            USCalendarDayModel(text: $0, columnCount: 1)
         }
     }
     

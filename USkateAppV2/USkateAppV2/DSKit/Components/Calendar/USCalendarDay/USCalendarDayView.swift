@@ -25,9 +25,18 @@ struct USCalendarDayView: View {
         }
     }
     
+    private var font: Font {
+        switch model.columnCount {
+        case 3:
+            return .caption.pointSize(8)
+        default:
+            return .caption
+        }
+    }
+    
     var body: some View {
-        Text(model.text)
-            .font(.caption.pointSize(8))
+        USLabel(model.text)
+            .font(font)
             .foregroundColor(Color(textColor))
             .background(.clear)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -37,7 +46,8 @@ struct USCalendarDayView: View {
 #Preview {
     USCalendarDayView(
         model: .init(
-            text: "1"
+            text: "1",
+            columnCount: 2
         )
     )
 }

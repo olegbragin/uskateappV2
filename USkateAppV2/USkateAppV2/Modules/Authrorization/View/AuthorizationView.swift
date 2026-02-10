@@ -79,7 +79,7 @@ struct AuthorizationView: View {
             .navigationDestination(for: AuthorizationViewModel.Route.self) { route in
                 switch route {
                 case .content(let data):
-                    ContentView(model: .init(data: data))
+                    ContentView()
                         .navigationBarBackButtonHidden(true)
                 default:
                     EmptyView()

@@ -16,6 +16,7 @@ struct USCalendarWeekHeaderView: View {
                 USCalendarDayView(
                     model: .init(
                         text: $0.text,
+                        columnCount: $0.columnCount
                     )
                 )
             }
