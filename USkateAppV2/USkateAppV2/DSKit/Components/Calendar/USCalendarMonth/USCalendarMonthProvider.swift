@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct USCalendarMonthProvider {
     let month: Int
@@ -14,7 +15,7 @@ struct USCalendarMonthProvider {
     let calendar: Calendar
     var weeks = [USCalendarWeekDataSource]()
     
-    init(calendar: Calendar = .current, month: Int, year: Int) {
+    init(calendar: Calendar = .current, month: Int, year: Int, events: [EventDataSource] = []) {
         self.calendar = calendar
         self.month = month
         self.year = year
@@ -22,7 +23,8 @@ struct USCalendarMonthProvider {
         self.weeks =
             getCalendarWeeks(
                 ofMonth: month,
-                ofYear: year
+                ofYear: year,
+                events: events
             )
     }
     
@@ -52,7 +54,8 @@ struct USCalendarMonthProvider {
 
     private func getCalendarWeeks(
         ofMonth: Int,
-        ofYear: Int
+        ofYear: Int,
+        events: [EventDataSource]
     ) -> [USCalendarWeekDataSource] {
         let todayDate = Date()
         
@@ -108,7 +111,15 @@ struct USCalendarMonthProvider {
                     date: date,
                     number: dayNumber,
                     isInCurrentMonth: isInMonth,
-                    isToday: calendar.isDate(date, inSameDayAs: todayDate) && isInMonth
+                    isToday: calendar.isDate(date, inSameDayAs: todayDate) && isInMonth,
+                    events:
+                        events.filter {
+                            let eventDate = calendar.dateComponents([.year, .month, .day], from: $0.date)
+                            return eventDate.year == year && eventDate.month == month && eventDate.day == dayNumber
+                        }
+                        .map {
+                            Color($0.color)
+                        }
                 )
             )
         }

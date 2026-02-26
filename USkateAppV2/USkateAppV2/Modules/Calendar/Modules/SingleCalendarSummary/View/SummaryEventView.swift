@@ -39,6 +39,7 @@ struct SummaryEventView: View {
         model: .init(
             label: "Doctor",
             color: "red",
+            date: Date(),
             numberOfEvents: 4
         )
     )

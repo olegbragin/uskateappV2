@@ -6,10 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct USCalendarDayDataSource {
     let date: Date
     let number: Int
     let isInCurrentMonth: Bool
     let isToday: Bool
+    let events: [Color]
+    
+    init(date: Date, number: Int, isInCurrentMonth: Bool, isToday: Bool, events: [Color] = []) {
+        self.date = date
+        self.number = number
+        self.isInCurrentMonth = isInCurrentMonth
+        self.isToday = isToday
+        self.events = events
+    }
 }

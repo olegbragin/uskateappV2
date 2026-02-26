@@ -11,17 +11,19 @@ struct USCalendarWeekHeaderView: View {
     let model = USCalendarWeekHeaderModel()
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             ForEach(model.weekHeader) {
                 USCalendarDayView(
                     model: .init(
                         text: $0.text,
-                        columnCount: $0.columnCount
+                        columnCount: $0.columnCount,
+                        date: $0.date,
+                        isDayNumber: false
                     )
                 )
             }
         }
-        .padding(.bottom, 8)
+        .id(UUID())
     }
 }
 

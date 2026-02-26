@@ -8,40 +8,16 @@
 import SwiftUI
 
 struct RootView: View {
-    @State private var columnVisibility: NavigationSplitViewVisibility = .automatic
-    @State private var menuViewModel = MenuViewModel()
-    @State private var subMenuViewModel = MenuViewModel()
+    @State var selector = RootSelectionCoordinator()
     
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
-            MenuView(model: menuViewModel, columnVisibility: $columnVisibility)
-#if os(macOS)
-                .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
+        NavigationSplitView {
+            RootSidebarView(selector: $selector)
         } content: {
-            switch menuViewModel.selection {
-            case "calendars":
-                CalendarListView(
-                    selection: $subMenuViewModel.selection,
-                    columnVisibility: $columnVisibility
-                )
-            default:
-                EmptyView()
-            }
+            RootContentView(selector: $selector)
         } detail: {
-            NavigationStack {
-                switch subMenuViewModel.selection {
-                case "SingleCalendar":
-                    CalendarsView(currentPage: .constant(3))
-                default:
-                    Text("Select a calendar from the sidebar")
-                }
-            }
+            RootDetailView(selector: $selector)
         }
         .padding(0)
     }
-}
-
-#Preview {
-    RootView()
 }

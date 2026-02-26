@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import Observation
 
-struct USCalendarMonthModel: Identifiable {
+@Observable
+final class USCalendarMonthModel: Identifiable {
     let id = UUID()
     let monthProvider: USCalendarMonthProvider
     let label: String
+    let number: Int
     
     let weeks: [USCalendarWeekModel]
+    var selectedDay: USCalendarDayModel = .init(text: "sample1")
     
     init(monthProvider: USCalendarMonthProvider, columnCount: Int) {
         self.monthProvider = monthProvider
@@ -26,5 +30,6 @@ struct USCalendarMonthModel: Identifiable {
             )
         }
         self.label = monthProvider.shortLocalizedMonthName()
+        self.number = monthProvider.month
     }
 }

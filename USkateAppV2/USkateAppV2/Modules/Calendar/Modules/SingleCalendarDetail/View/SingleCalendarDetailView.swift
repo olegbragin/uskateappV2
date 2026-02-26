@@ -8,34 +8,60 @@
 import SwiftUI
 
 struct SingleCalendarDetailView: View {
-    @Environment(\.horizontalSizeClass) var sizeClass
     @State private var orientation: UIDeviceOrientation = .portrait
+    @State var viewModel: SingleCalendarDetailViewModel
     
     var body: some View {
-        ScrollView {
-            if orientation == .portrait || orientation == .portraitUpsideDown {
-                VStack(spacing: 16) {
-                    USCalendarMonthView(model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 2))
-                    SingleCalendarSummaryView()
+        Group {
+            if orientation == .landscapeLeft || orientation == .landscapeRight {
+                HStack(spacing: 16) {
+                    content
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(16)
             } else {
-                HStack(alignment: .center, spacing: 16) {
-                    USCalendarMonthView(model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 2))
-                    SingleCalendarSummaryView()
+                VStack(spacing: 16) {
+                    content
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(16)
             }
         }
-        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-            orientation = UIDevice.current.orientation
+        .task {
+            try? await viewModel.fetch()
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { info in
+            let currentDeviceOrientation = UIDevice.current.orientation
+            guard
+                currentDeviceOrientation == .landscapeLeft ||
+                currentDeviceOrientation == .landscapeRight ||
+                currentDeviceOrientation == .portrait
+            else { return }
+            print(info)
+            orientation = currentDeviceOrientation
+        }
+        .navigationTitle(viewModel.name)
         .id(orientation)
     }
-}
-
-#Preview {
-    SingleCalendarDetailView()
+    
+    var content: some View {
+        Group {
+            TabView(selection: $viewModel.currentMonthIndex) {
+                ForEach(1...12, id: \.self) { month in
+                    USCalendarMonthView(
+                        model: .init(
+                            monthProvider: .init(month: month, year: viewModel.year, events: viewModel.events),
+                            columnCount: viewModel.numberOfColumns,
+                        ),
+                        selectedDay: .constant(nil)
+                    )
+                    .tag(month)
+                }
+            }
+            .padding()
+            .tabViewStyle(.page)
+            .indexViewStyle(.page)
+            SingleCalendarSummaryView(viewModel: viewModel.summary)
+        }
+    }
 }

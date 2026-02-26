@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D716C9112ECA1268006DA4F8 /* USkateAppV2Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */; platformFilters = (ios, xros, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D754F6452F420A6600213F89 /* ObjectBox.xcframework in Frameworks */ = {isa = PBXBuildFile; productRef = D754F6442F420A6600213F89 /* ObjectBox.xcframework */; };
 		D7625E212F28EEF1004FB165 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = D7625E202F28EEF1004FB165 /* Collections */; };
 		D7D753702EDDF777003CF668 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = D7D7536F2EDDF777003CF668 /* Valet */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,11 @@
 			path = USkateAppV2TVUITests;
 			sourceTree = "<group>";
 		};
+		D754F6522F4211C000213F89 /* generated */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = generated;
+			sourceTree = "<group>";
+		};
 		D76F495C2EA8306A00BFF757 /* USkateAppV2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -206,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D754F6452F420A6600213F89 /* ObjectBox.xcframework in Frameworks */,
 				D7625E212F28EEF1004FB165 /* Collections in Frameworks */,
 				D7D753702EDDF777003CF668 /* Valet in Frameworks */,
 			);
@@ -238,6 +245,7 @@
 		D76F49512EA8306A00BFF757 = {
 			isa = PBXGroup;
 			children = (
+				D754F6522F4211C000213F89 /* generated */,
 				D76F495C2EA8306A00BFF757 /* USkateAppV2 */,
 				D76F496E2EA8306B00BFF757 /* USkateAppV2Tests */,
 				D76F49782EA8306B00BFF757 /* USkateAppV2UITests */,
@@ -422,12 +430,14 @@
 				D716C9102ECA1268006DA4F8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				D754F6522F4211C000213F89 /* generated */,
 				D76F495C2EA8306A00BFF757 /* USkateAppV2 */,
 			);
 			name = USkateAppV2;
 			packageProductDependencies = (
 				D7D7536F2EDDF777003CF668 /* Valet */,
 				D7625E202F28EEF1004FB165 /* Collections */,
+				D754F6442F420A6600213F89 /* ObjectBox.xcframework */,
 			);
 			productName = USkateAppV2;
 			productReference = D76F495A2EA8306A00BFF757 /* USkateAppV2.app */;
@@ -537,6 +547,7 @@
 			packageReferences = (
 				D7D7536E2EDDF777003CF668 /* XCRemoteSwiftPackageReference "Valet" */,
 				D7625E1F2F28EEF1004FB165 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				D754F6432F420A6600213F89 /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D76F495B2EA8306A00BFF757 /* Products */;
@@ -1207,6 +1218,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -1264,6 +1276,7 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -1469,6 +1482,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D754F6432F420A6600213F89 /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/objectbox/objectbox-swift-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 		D7625E1F2F28EEF1004FB165 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
@@ -1488,6 +1509,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D754F6442F420A6600213F89 /* ObjectBox.xcframework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D754F6432F420A6600213F89 /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */;
+			productName = ObjectBox.xcframework;
+		};
 		D7625E202F28EEF1004FB165 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D7625E1F2F28EEF1004FB165 /* XCRemoteSwiftPackageReference "swift-collections" */;

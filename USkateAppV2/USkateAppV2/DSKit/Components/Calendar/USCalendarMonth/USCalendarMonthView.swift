@@ -6,30 +6,32 @@
 //
 
 import SwiftUI
-import OrderedCollections
 
 struct USCalendarMonthView: View {
-    let model: USCalendarMonthModel
-    
-    init(model: USCalendarMonthModel) {
-        self.model = model
-    }
+    @Bindable var model: USCalendarMonthModel
+    @Binding var selectedDay: Date?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(model.label)
             VStack(alignment: .leading, spacing: 0) {
                 USCalendarWeekHeaderView()
+                    .padding(.bottom, 0)
                 ForEach(model.weeks) { week in
-                    USCalendarWeekView(model: week)
+                    USCalendarWeekView(
+                        model: week,
+                        selectedDay: $selectedDay
+                    )
                 }
             }
         }
+        .id(model.label)
     }
 }
 
 #Preview {
     USCalendarMonthView(
-        model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 3)
+        model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 3),
+        selectedDay: .constant(Date())
     )
 }

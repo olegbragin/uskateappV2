@@ -6,18 +6,17 @@
 //
 
 import Foundation
+import Observation
 
-struct SingleCalendarSummaryModel {
-    let label: String
+@Observable
+final class SingleCalendarSummaryModel {
     let events: [SummaryEventModel]
-    let year: Date
+    let year: Int
     
     init(
-        label: String,
-        year: Date,
+        year: Int,
         events: [SummaryEventModel]
     ) {
-        self.label = label
         self.year = year
         self.events = events
     }

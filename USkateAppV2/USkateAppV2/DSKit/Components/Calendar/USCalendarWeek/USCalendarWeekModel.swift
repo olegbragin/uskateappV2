@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct USCalendarWeekModel: Identifiable {
+@Observable
+final class USCalendarWeekModel: Identifiable {
     let id = UUID()
     
     let weekNumber: Int
@@ -24,7 +26,9 @@ struct USCalendarWeekModel: Identifiable {
                 text: "\($0.number)",
                 isToday: $0.isToday,
                 isInCurrentMonth: $0.isInCurrentMonth,
-                columnCount: columnCount
+                columnCount: columnCount,
+                date: Calendar.current.date(from: .init(year: year, month: monthNumber, day: $0.number, hour: 23))!,
+                events: $0.events
             )
         }
     }

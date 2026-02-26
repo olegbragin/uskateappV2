@@ -6,25 +6,18 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct CalendarListView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-    
-    @Binding var selection: String?
-    @Binding var columnVisibility: NavigationSplitViewVisibility
+    @Binding var selector: RootSelectionCoordinator
+    @State private var viewModel = CalendarListViewModel()
     
     var body: some View {
-        List(selection: $selection) {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    .tag("SingleCalendar")
+        List(selection: $selector.selectedItem) {
+            ForEach(viewModel.calendars) { item in
+                Text("Item at \(item.name)")
+                    .tag(RootSelection.calendarGallery(selectedCalendarId: item.id))
             }
             .onDelete(perform: deleteItems)
-        }
-        .onChange(of: selection) {
-            columnVisibility = .detailOnly
         }
 #if os(macOS)
         .navigationSplitViewColumnWidth(min: 180, ideal: 200)
@@ -41,28 +34,25 @@ struct CalendarListView: View {
                 }
             }
         }
+        .task {
+            try? await viewModel.fetch()
+        }
+        .refreshable {
+            try? await viewModel.fetch()
+        }
     }
     
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+            viewModel.addCalendar(with: "Calendar" + String(Int.random(in: 1...1000)))
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                viewModel.removeCalendar(viewModel.calendars[index])
             }
         }
     }
-}
-
-#Preview {
-    CalendarListView(
-        selection: .constant(nil),
-        columnVisibility: .constant(.automatic)
-    )
-    .modelContainer(for: Item.self, inMemory: true)
 }

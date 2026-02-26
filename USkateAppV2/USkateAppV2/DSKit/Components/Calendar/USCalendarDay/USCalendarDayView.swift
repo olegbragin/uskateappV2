@@ -8,10 +8,40 @@
 import SwiftUI
 
 struct USCalendarDayView: View {
-    let model: USCalendarDayModel
+    @Bindable var model: USCalendarDayModel
     
-    init(model: USCalendarDayModel) {
-        self.model = model
+    var body: some View {
+        ZStack {
+            Rectangle()
+            .fill(
+                LinearGradient(
+                    colors: model.events,
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+            .drawingGroup()
+            .allowsHitTesting(false)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .aspectRatio(1, contentMode: .fit)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(backgroundColor)
+            )
+            .padding(2)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(borderColor, lineWidth: 0.5)
+            )
+            
+            // Текст
+            USLabel(model.text)
+                .font(font)
+                .foregroundColor(Color(textColor))
+                .background(.clear)
+                .shadow(radius: 2)
+        }
+        .id(model.events.count)
     }
     
     private var textColor: Color {
@@ -34,12 +64,25 @@ struct USCalendarDayView: View {
         }
     }
     
-    var body: some View {
-        USLabel(model.text)
-            .font(font)
-            .foregroundColor(Color(textColor))
-            .background(.clear)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    private var backgroundColor: Color {
+        guard model.isDayNumber else { return .clear }
+        switch (model.isToday, model.isInCurrentMonth) {
+        case (true, true), (true, false):
+            return Color("colorBackground")
+        case (false, true):
+            return Color("colorBackground")
+        case (false, false):
+            return Color("colorBackgroundDisabled")
+        }
+    }
+    
+    private var borderColor: Color {
+        switch (model.isToday, model.isInCurrentMonth) {
+        case (true, true), (true, false):
+            return .red
+        default:
+            return .clear
+        }
     }
 }
 
@@ -47,7 +90,15 @@ struct USCalendarDayView: View {
     USCalendarDayView(
         model: .init(
             text: "1",
-            columnCount: 2
+            columnCount: 2,
+            date: Date(),
+            events: [
+                .black,
+                .green,
+                .orange,
+                .mint,
+                .indigo
+            ]
         )
     )
 }

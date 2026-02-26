@@ -16,11 +16,13 @@ struct ScrollPositionPreferenceKey: PreferenceKey {
     }
 }
 
-final class USCalendarYearModel: ObservableObject {
+@Observable
+final class USCalendarYearModel {
     
-    @Published var year: Int = 2026
-    @Published var columnCount: Int = 1
-    @Published var scrollPosition: CGFloat = 0
+    var year: Int = 2026
+    var columnCount: Int = 1
+    var scrollPosition: CGFloat = 0
+    var events: [EventDataSource] = []
         
     private let baseSensitivity: CGFloat = 0.12
     private let minSensitivity: CGFloat = 0.08
@@ -35,24 +37,25 @@ final class USCalendarYearModel: ObservableObject {
 
     var months: [USCalendarMonthModel] {
         [
-            .init(monthProvider: .init(month: 1, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 2, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 3, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 4, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 5, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 6, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 7, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 8, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 9, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 10, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 11, year: year), columnCount: columnCount),
-            .init(monthProvider: .init(month: 12, year: year), columnCount: columnCount)
+            .init(monthProvider: .init(month: 1, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 2, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 3, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 4, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 5, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 6, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 7, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 8, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 9, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 10, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 11, year: year, events: events), columnCount: columnCount),
+            .init(monthProvider: .init(month: 12, year: year, events: events), columnCount: columnCount)
         ]
     }
     
-    init(year: Int, numberOfColumns: Int) {
+    init(year: Int, numberOfColumns: Int, events: [EventDataSource] = []) {
         self.year = year
         self.columnCount = numberOfColumns
+        self.events = events
     }
     
     /// Обрабатывает жест масштабирования

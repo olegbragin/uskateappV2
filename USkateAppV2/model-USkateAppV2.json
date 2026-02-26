@@ -1,0 +1,97 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "3:2730411461030946560",
+      "lastPropertyId": "4:8745970760494088192",
+      "name": "PPCalendar",
+      "properties": [
+        {
+          "id": "1:475768515629029120",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4413228904603206144",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:6421886404195190272",
+          "name": "year",
+          "type": 6
+        },
+        {
+          "id": "4:8745970760494088192",
+          "name": "numberOfColumns",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:6846076760880846080",
+      "lastPropertyId": "4:1336946883087536128",
+      "name": "PPEvent",
+      "properties": [
+        {
+          "id": "1:7572596836960644352",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5539743810412508160",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:8245295518384584192",
+          "name": "color",
+          "type": 9
+        },
+        {
+          "id": "4:1336946883087536128",
+          "name": "date",
+          "type": 10
+        }
+      ],
+      "relations": [
+        {
+          "id": "4:1639814041303600896",
+          "name": "calendars",
+          "targetId": "3:2730411461030946560"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "4:6846076760880846080",
+  "lastIndexId": "0:0",
+  "lastRelationId": "4:1639814041303600896",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [
+    8505684367437482240,
+    8214549532295406080
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    1851494760564934144,
+    3586466122746533888,
+    7930384512331227904,
+    991991792821481984,
+    9205141802236637696,
+    6725444923042457088,
+    3381286943659643392
+  ],
+  "retiredRelationUids": [
+    3847257947796885504,
+    7583775562010563328,
+    6506396974266007552
+  ],
+  "version": 1
+}
