@@ -70,6 +70,9 @@
             <PersistentString
                value = "$event">
             </PersistentString>
+            <PersistentString
+               value = "viewModel.calendarEvents()">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -88,6 +91,9 @@
       </ContextState>
       <ContextState
          contextName = "SingleCalendarDetailViewModel.fetch():SingleCalendarDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ObjectBoxCalendarStorage.getCalendar(id:):ObjectBoxCalendarStorage.swift">
       </ContextState>
       <ContextState
          contextName = "freestanding macro expansion #1 of expect in module USkateAppV2Tests file ObjectBoxStorageTests.swift line 68 column 9 [inlined]:@__swiftmacro_16USkateAppV2Tests0032ObjectBoxStorageTestsswift_jIADjfMX67_8_6expectfMf_.swift">

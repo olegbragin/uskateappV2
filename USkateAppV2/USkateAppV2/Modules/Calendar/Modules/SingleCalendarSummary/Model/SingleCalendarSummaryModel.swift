@@ -10,7 +10,7 @@ import Observation
 
 @Observable
 final class SingleCalendarSummaryModel {
-    let events: [SummaryEventModel]
+    var events: [SummaryEventModel]
     let year: Int
     
     init(

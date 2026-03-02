@@ -26,7 +26,7 @@ final class USCalendarMonthModel: Identifiable {
                 monthNumber: monthProvider.month,
                 year: monthProvider.year,
                 days: $0.element.days,
-                columnCount: columnCount
+                columnCount: columnCount,
             )
         }
         self.label = monthProvider.shortLocalizedMonthName()

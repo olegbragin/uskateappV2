@@ -115,7 +115,7 @@ struct USCalendarMonthProvider {
                     events:
                         events.filter {
                             let eventDate = calendar.dateComponents([.year, .month, .day], from: $0.date)
-                            return eventDate.year == year && eventDate.month == month && eventDate.day == dayNumber
+                            return eventDate.year == year && eventDate.month == month && eventDate.day == dayNumber && isInMonth
                         }
                         .map {
                             Color($0.color)

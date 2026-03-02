@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct AddEditEventView: View {
-    @Binding var isPresented: Bool
-    @Binding var event: EventDataSource
-    @State var selectedColor: ColorOption = .option1
-    @State var name = ""
-    var date: Date?
+    @Bindable var viewModel: SingleCalendarDetailViewModel
     
     @Environment(\.dismiss) private var dismiss
     
@@ -21,7 +17,7 @@ struct AddEditEventView: View {
             // Верхняя панель с кнопками
             HStack {
                 Button("Отмена") {
-                    isPresented = false
+                    viewModel.cancel()
                 }
                 .foregroundColor(.red)
                 
@@ -35,8 +31,9 @@ struct AddEditEventView: View {
                 Spacer()
                 
                 Button("Сохранить") {
-                    saveProfile()
-                    isPresented = false
+                    Task {
+                        try await viewModel.commit()
+                    }
                 }
                 .foregroundColor(.blue)
             }
@@ -48,7 +45,7 @@ struct AddEditEventView: View {
             // Форма внутри ScrollView для лучшей прокрутки
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(date?.formatted() ?? "")
+                    Text(viewModel.selectedDay?.formatted() ?? "")
                     
                     // Поле ввода имени
                     VStack(alignment: .leading, spacing: 8) {
@@ -56,7 +53,7 @@ struct AddEditEventView: View {
                             .font(.headline)
                             .fontWeight(.medium)
                         
-                        TextField("Введите имя", text: $name)
+                        TextField("Введите имя", text: $viewModel.eventName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal, 4)
                     }
@@ -67,28 +64,16 @@ struct AddEditEventView: View {
                             .font(.headline)
                             .fontWeight(.medium)
                         
-                        ColorPickerView(selectedColor: $selectedColor)
+                        ColorPickerView(selectedColor: $viewModel.selectedColor)
                     }
                 }
                 .padding()
             }
         }
-        .presentationDetents([.medium, .large]) // два уровня высоты: средний и большой
-        .presentationDragIndicator(.visible) // показывает индикатор перетаскивания
-    }
-    
-    private func saveProfile() {
-        // Здесь логика сохранения данных
-        if let date = date {
-            event = EventDataSource(name: name, date: date, color: selectedColor.colorName)
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
+        .onDisappear {
+            viewModel.cancel()
         }
     }
-}
-
-#Preview {
-    AddEditEventView(
-        isPresented: .constant(true),
-        event: .constant(.init(name: "aergaer", date: Date(), color: "")),
-        date: Date()
-    )
 }

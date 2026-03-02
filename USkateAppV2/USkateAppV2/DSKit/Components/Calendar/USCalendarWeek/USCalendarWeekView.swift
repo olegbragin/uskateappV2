@@ -19,7 +19,7 @@ struct USCalendarWeekView: View {
                 )
                 .padding(.bottom, 0)
                 .onTapGesture {
-                    selectedDay = day.date ?? Date()
+                    selectedDay = day.date
                 }
             }
         }

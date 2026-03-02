@@ -36,7 +36,7 @@ struct CalendarManager {
         try await service.getAllCalendars()
     }
     
-    func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws {
+    func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws -> Int64 {
         try await service.addEditEvent(event, calendarId: calendarId)
     }
 }

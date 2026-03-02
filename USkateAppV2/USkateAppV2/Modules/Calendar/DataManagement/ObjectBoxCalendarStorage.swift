@@ -40,13 +40,14 @@ class ObjectBoxCalendarStorage: CalendarStorage {
         )
     }
     
-    func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws {
-        var savedEvent = PPEvent.init(id: UInt64(event.id), name: event.name, color: event.color, date: event.date)
+    func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws -> Int64 {
+        let savedEvent = PPEvent.init(id: UInt64(event.id), name: event.name, color: event.color, date: event.date)
         let eventid = try eventEntityBox.put(savedEvent)
         savedEvent.id = UInt64(eventid)
         let calendar = try calendarEntityBox.get(calendarId)
         calendar?.events.append(savedEvent)
         try calendar?.events.applyToDb()
+        return Int64(savedEvent.id)
     }
     
     @discardableResult

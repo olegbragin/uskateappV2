@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct SummaryEventView: View {
-    let model: SummaryEventModel
-    
-    init(model: SummaryEventModel) {
-        self.model = model
-    }
+    @Bindable var model: SummaryEventModel
     
     var body: some View {
         HStack(spacing: 8) {
@@ -39,7 +35,6 @@ struct SummaryEventView: View {
         model: .init(
             label: "Doctor",
             color: "red",
-            date: Date(),
             numberOfEvents: 4
         )
     )

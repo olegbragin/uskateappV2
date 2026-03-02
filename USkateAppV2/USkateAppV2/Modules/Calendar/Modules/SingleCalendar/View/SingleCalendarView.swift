@@ -25,26 +25,12 @@ struct SingleCalendarView: View {
             selectedMonth: $selectedMonth,
             selectedDay: $selectedDay
         )
-        .onChange(of: selectedDay) { _, newValue in
-            guard let eventDate = newValue else { return }
-            event.date = eventDate
-            isSheetPresented = true
+        .task {
+            events = (try? await viewModel.calendarEvents()) ?? []
         }
-        .onChange(of: event) { oldEvent, newEvent in
-            Task {
-                if oldEvent != newEvent && !newEvent.name.isEmpty && !newEvent.color.isEmpty {
-                    try? await viewModel.addEvent(id: newEvent.id, name: newEvent.name, date: newEvent.date, color: newEvent.color)
-                    events = try await viewModel.calendarEvents()
-                }
-            }
+        .onChange(of: viewModel.numberOfColumns) { _, newValue in
+            print(newValue)
         }
         .padding(6)
-        .sheet(isPresented: $isSheetPresented) {
-            AddEditEventView(
-                isPresented: $isSheetPresented,
-                event: $event,
-                date: selectedDay
-            )
-        }
     }
 }

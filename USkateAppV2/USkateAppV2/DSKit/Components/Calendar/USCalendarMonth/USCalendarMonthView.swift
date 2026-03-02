@@ -25,7 +25,6 @@ struct USCalendarMonthView: View {
                 }
             }
         }
-        .id(model.label)
     }
 }
 

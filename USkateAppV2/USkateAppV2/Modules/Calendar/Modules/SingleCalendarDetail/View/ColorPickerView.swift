@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ColorPickerView: View {
-    @Binding var selectedColor: ColorOption
+    @Binding var selectedColor: ColorOption?
     let colors: [ColorOption] = ColorOption.allCases
     
     var body: some View {
@@ -24,7 +24,7 @@ struct ColorPickerView: View {
                                 .frame(width: 50, height: 50)
                                 .overlay(
                                     Circle()
-                                        .stroke(selectedColor.color == colorOption.color ?
+                                        .stroke(selectedColor?.color == colorOption.color ?
                                                 Color.accentColor : Color.clear,
                                                 lineWidth: 3)
                                 )

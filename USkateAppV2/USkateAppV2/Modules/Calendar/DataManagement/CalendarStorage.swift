@@ -16,5 +16,5 @@ protocol CalendarStorage {
     
     func getAllCalendars() async throws -> [CalendarDataSource]
     
-    func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws
+    func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws -> Int64
 }

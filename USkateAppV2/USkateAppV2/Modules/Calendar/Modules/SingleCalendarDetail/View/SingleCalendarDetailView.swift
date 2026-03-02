@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SingleCalendarDetailView: View {
     @State private var orientation: UIDeviceOrientation = .portrait
-    @State var viewModel: SingleCalendarDetailViewModel
+    @Bindable var viewModel: SingleCalendarDetailViewModel
+    @State private var isSheetPresented = false
+    @State var events: [EventDataSource] = []
     
     var body: some View {
         Group {
@@ -17,15 +19,14 @@ struct SingleCalendarDetailView: View {
                 HStack(spacing: 16) {
                     content
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(16)
             } else {
                 VStack(spacing: 16) {
                     content
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(16)
             }
+        }
+        .refreshable {
+            try? await viewModel.fetch()
         }
         .task {
             try? await viewModel.fetch()
@@ -41,7 +42,6 @@ struct SingleCalendarDetailView: View {
             orientation = currentDeviceOrientation
         }
         .navigationTitle(viewModel.name)
-        .id(orientation)
     }
     
     var content: some View {
@@ -53,15 +53,25 @@ struct SingleCalendarDetailView: View {
                             monthProvider: .init(month: month, year: viewModel.year, events: viewModel.events),
                             columnCount: viewModel.numberOfColumns,
                         ),
-                        selectedDay: .constant(nil)
+                        selectedDay: $viewModel.selectedDay
                     )
                     .tag(month)
                 }
             }
             .padding()
-            .tabViewStyle(.page)
-            .indexViewStyle(.page)
-            SingleCalendarSummaryView(viewModel: viewModel.summary)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .indexViewStyle(.page(backgroundDisplayMode: .never))
+            .onChange(of: viewModel.selectedDay) { _, newValue in
+                isSheetPresented = newValue != nil
+            }
+            .sheet(isPresented: $isSheetPresented) {
+                AddEditEventView(viewModel: viewModel)
+            }
+            
+            ScrollView {
+                SingleCalendarSummaryView(viewModel: viewModel.summary)
+            }
         }
+        .padding(16)
     }
 }
