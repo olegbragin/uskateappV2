@@ -12,27 +12,19 @@ struct USCalendarDayView: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-            .fill(
-                LinearGradient(
-                    colors: model.events,
-                    startPoint: .top,
-                    endPoint: .bottom
+            USCalendarDayEventView(events: model.events)
+                .drawingGroup()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .aspectRatio(1, contentMode: .fit)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(backgroundColor)
                 )
-            )
-            .drawingGroup()
-            .allowsHitTesting(false)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .aspectRatio(1, contentMode: .fit)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(backgroundColor)
-            )
-            .padding(2)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(borderColor, lineWidth: 0.5)
-            )
+                .padding(2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(borderColor, lineWidth: 0.5)
+                )
             
             // Текст
             USLabel(model.text)
@@ -47,21 +39,26 @@ struct USCalendarDayView: View {
     private var textColor: Color {
         switch (model.isToday, model.isInCurrentMonth) {
         case (true, true), (true, false):
-            return .white
-        case (false, true):
-            return Color("AccentColor")
-        case (false, false):
             return Color("colorForeground")
+        case (false, true):
+            return Color("colorForeground")
+        case (false, false):
+            return Color("colorForegroundDisabled")
         }
     }
     
     private var font: Font {
+        var font = Font.caption
         switch model.columnCount {
         case 3:
-            return .caption.pointSize(8)
+            font = .caption.pointSize(8)
         default:
-            return .caption
+            font = .caption
         }
+        if model.isToday {
+            font = font.bold()
+        }
+        return font
     }
     
     private var backgroundColor: Color {
@@ -96,8 +93,7 @@ struct USCalendarDayView: View {
                 .black,
                 .green,
                 .orange,
-                .mint,
-                .indigo
+                .mint
             ]
         )
     )

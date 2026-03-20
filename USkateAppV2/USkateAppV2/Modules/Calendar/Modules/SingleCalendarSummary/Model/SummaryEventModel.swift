@@ -11,17 +11,14 @@ import Observation
 @Observable
 final class SummaryEventModel: Identifiable {
     let id = UUID()
-    let numberOfEvents: Int
-    let label: String
+    let labels: [(id: Int64, name: String)]
     let color: String
     
     init(
-        label: String,
-        color: String,
-        numberOfEvents: Int
+        labels: [(id: Int64, name: String)] = [],
+        color: String = ""
     ) {
-        self.label = label
+        self.labels = labels
         self.color = color
-        self.numberOfEvents = numberOfEvents
     }
 }

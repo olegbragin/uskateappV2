@@ -7,7 +7,7 @@
 
 import ObjectBox
 
-struct CalendarDataSource {
+struct CalendarDataSource: Identifiable, Hashable {
     var id: Int64
     var name: String
     var year: Int
@@ -37,5 +37,11 @@ struct CalendarDataSource {
         self.events = dto.events.compactMap {
             EventDataSource($0)
         }
+    }
+}
+
+extension CalendarDataSource: Equatable {
+    static func == (lhs: CalendarDataSource, rhs: CalendarDataSource) -> Bool {
+        lhs.id == rhs.id && lhs.name == rhs.name && lhs.year == rhs.year && lhs.numberOfColumns == rhs.numberOfColumns
     }
 }

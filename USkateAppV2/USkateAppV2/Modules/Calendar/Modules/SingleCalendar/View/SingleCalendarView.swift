@@ -9,28 +9,60 @@ import SwiftUI
 
 struct SingleCalendarView: View {
     @Bindable var viewModel: SingleCalendarModel
-    @Binding var selectedMonth: Int
-    @State private var isSheetPresented = false
-    @State private var selectedDay: Date?
+    @State private var isEditSheetPresented = false
+    @State private var isLegendSheetPresented = false
     @State private var event: EventDataSource = .init(name: "", date: Date(), color: "")
-    @State var events: [EventDataSource] = []
     
     var body: some View {
         USCalendarYearView(
-            viewModel: .init(
-                year: viewModel.year,
-                numberOfColumns: viewModel.numberOfColumns,
-                events: events
-            ),
-            selectedMonth: $selectedMonth,
-            selectedDay: $selectedDay
+            viewModel: viewModel.yearModel,
+            selectedMonth: $viewModel.selectedMonth,
+            selectedDay: $viewModel.selectedDay
         )
-        .task {
-            events = (try? await viewModel.calendarEvents()) ?? []
+        .refreshable {
+            try? await viewModel.fetch()
         }
-        .onChange(of: viewModel.numberOfColumns) { _, newValue in
-            print(newValue)
+        .task(id: viewModel.id) {
+            try? await viewModel.fetch()
+        }
+        .onChange(of: viewModel.yearModel.columnCount) {
+            if $0 != $1 {
+                viewModel.save()
+            }
+        }
+        .onChange(of: viewModel.selectedDay) { _, newValue in
+            isEditSheetPresented = newValue != nil
+            viewModel.addEditEventModel.selectedDay = newValue
+        }
+        .onChange(of: viewModel.addEditEventModel.selectedDay) { _, newValue in
+            viewModel.selectedDay = newValue
+        }
+        .onChange(of: viewModel.addEditEventModel.event) {
+            if $0 != $1, let eventToCommit = $1 {
+                Task {
+                    try? await viewModel.addEvent(id: eventToCommit.id, name: eventToCommit.name, date: eventToCommit.date, color: eventToCommit.color)
+                    try? await viewModel.fetch()
+                }
+            }
         }
         .padding(6)
+        .navigationTitle(viewModel.label)
+        .toolbar {
+            ToolbarItem {
+                if !viewModel.legendViewModel.events.isEmpty {
+                    Button("Legend", systemImage: "line.3.horizontal") {
+                        isLegendSheetPresented.toggle()
+                    }
+                    .popover(isPresented: $isLegendSheetPresented) {
+                        SingleCalendarSummaryView(viewModel: viewModel.legendViewModel)
+                            .presentationCompactAdaptation(.popover)
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $isEditSheetPresented) {
+            EventListView(viewModel: viewModel)
+                .interactiveDismissDisabled(true)
+        }
     }
 }

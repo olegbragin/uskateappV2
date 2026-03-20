@@ -34,6 +34,11 @@ final class USCalendarYearModel {
 
     // Для тактильной отдачи (опционально)
     private let hapticFeedback = UINotificationFeedbackGenerator()
+    
+    var indexOfCurrentMonth: Int? {
+        let currentMonth = Calendar.current.component(.month, from: Date())
+        return months.firstIndex { $0.number == currentMonth }
+    }
 
     var months: [USCalendarMonthModel] {
         [

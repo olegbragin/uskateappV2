@@ -11,15 +11,24 @@ import Observation
 final class CalendarListViewModel {
     private var manager: CalendarManager
     
-    var calendars: [CalendarListModel] = []
+    var calendars: [CalendarDataSource] = []
+    
+    var addEditCalendarViewModel = AddEditCalendarViewModel()
+    var isAddEditSheetPresented = false
     
     init(manager: CalendarManager = .init()) {
         self.manager = manager
     }
     
     func fetch() async throws {
-        self.calendars = try await manager.getAllCalendars().map {
-            CalendarListModel($0)
+        self.calendars = try await manager.getAllCalendars()
+    }
+    
+    func save() {
+        self.calendars.forEach { calendar in
+            Task {
+                try? await self.manager.updateCalendar(calendar)
+            }
         }
     }
     
@@ -27,12 +36,12 @@ final class CalendarListViewModel {
         Task {
             let newCalendar = try await manager.createCalendar(name: name, year: 2026, numberOfColumns: 3)
             await MainActor.run {
-                self.calendars.append(CalendarListModel(newCalendar))
+                self.calendars.append(newCalendar)
             }
         }
     }
     
-    func removeCalendar(_ calendar: CalendarListModel) {
+    func removeCalendar(_ calendar: CalendarDataSource) {
         Task {
             try await manager.deleteCalendar(calendar.id)
             await MainActor.run {

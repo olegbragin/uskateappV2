@@ -26,7 +26,8 @@ struct USCalendarYearView: View {
                     ),
                     spacing: 32
                 ) {
-                    ForEach(viewModel.months) { month in
+                    ForEach(viewModel.months.indices, id: \.self) { index in
+                        let month = viewModel.months[index]
                         USCalendarMonthView(
                             model: month,
                             selectedDay: $selectedDay
@@ -34,14 +35,24 @@ struct USCalendarYearView: View {
                         .onTapGesture {
                             selectedMonth = month.number
                         }
+                        .id(index)
                     }
                 }
                 .padding(16)
             }
             .scrollTargetLayout()
+            .onAppear {
+                if let index = viewModel.indexOfCurrentMonth {
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(index, anchor: .top)
+                    }
+                }
+            }
             .onChange(of: viewModel.columnCount) {
-                DispatchQueue.main.async {
-                    proxy.scrollTo(10, anchor: .center)
+                if let index = viewModel.indexOfCurrentMonth {
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(index, anchor: .top)
+                    }
                 }
             }
             .highPriorityGesture(

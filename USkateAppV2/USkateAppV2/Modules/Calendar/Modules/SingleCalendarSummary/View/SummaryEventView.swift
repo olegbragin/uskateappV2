@@ -12,10 +12,16 @@ struct SummaryEventView: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            Text(model.label)
+            ForEach(model.labels, id: \.id) { label in
+                Text(label.name)
+                    .padding(2)
+                    .onTapGesture {
+                        print(label.id)
+                    }
+            }
             Spacer()
             SummaryNumberOfEventsView(
-                model: .init(numberOfEvents: model.numberOfEvents)
+                model: .init(numberOfEvents: model.labels.count)
             )
         }
         .padding(
@@ -28,14 +34,4 @@ struct SummaryEventView: View {
             RoundedRectangle(cornerRadius: 8)
         )
     }
-}
-
-#Preview {
-    SummaryEventView(
-        model: .init(
-            label: "Doctor",
-            color: "red",
-            numberOfEvents: 4
-        )
-    )
 }

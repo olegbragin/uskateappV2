@@ -15,8 +15,8 @@ struct RootDetailView: View {
         NavigationStack(path: $router.path) {
             switch selector.selectedItem {
             case .calendarGallery(let selectedCalendarId):
-                CalendarsView(
-                    viewModel: .init(manager: .init(), selectedCalendarId: selectedCalendarId)
+                SingleCalendarView(
+                    viewModel: .init(id: selectedCalendarId)
                 )
             default:
                 Text("Select a calendar from the sidebar")

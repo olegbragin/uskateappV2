@@ -50,6 +50,17 @@ class ObjectBoxCalendarStorage: CalendarStorage {
         return Int64(savedEvent.id)
     }
     
+    func removeEvents(_ eventIds: [Int64], calendarId: Int64) async throws {
+        let calendar = try calendarEntityBox.get(calendarId)
+        calendar?.events.removeAll(where: {
+            eventIds.contains(Int64($0.id))
+        })
+        try calendar?.events.applyToDb()
+        try eventIds.forEach {
+            try eventEntityBox.remove($0)
+        }
+    }
+    
     @discardableResult
     func deleteCalendar(_ calendarId: Int64) async throws -> Int64 {
         guard try calendarEntityBox.contains(UInt64(calendarId)) else { return 0 }

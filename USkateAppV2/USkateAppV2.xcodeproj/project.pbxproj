@@ -3,52 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D716C9112ECA1268006DA4F8 /* USkateAppV2Watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */; platformFilters = (ios, xros, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D754F6452F420A6600213F89 /* ObjectBox.xcframework in Frameworks */ = {isa = PBXBuildFile; productRef = D754F6442F420A6600213F89 /* ObjectBox.xcframework */; };
 		D7625E212F28EEF1004FB165 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = D7625E202F28EEF1004FB165 /* Collections */; };
 		D7D753702EDDF777003CF668 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = D7D7536F2EDDF777003CF668 /* Valet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D716C8FE2ECA1268006DA4F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D76F49522EA8306A00BFF757 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D716C8F02ECA1267006DA4F8;
-			remoteInfo = "USkateAppV2Watch Watch App";
-		};
-		D716C9082ECA1268006DA4F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D76F49522EA8306A00BFF757 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D716C8F02ECA1267006DA4F8;
-			remoteInfo = "USkateAppV2Watch Watch App";
-		};
-		D716C90F2ECA1268006DA4F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D76F49522EA8306A00BFF757 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D716C8F02ECA1267006DA4F8;
-			remoteInfo = "USkateAppV2Watch Watch App";
-		};
-		D716C92E2ECA1B09006DA4F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D76F49522EA8306A00BFF757 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D716C91E2ECA1B07006DA4F8;
-			remoteInfo = USkateAppV2TV;
-		};
-		D716C9382ECA1B09006DA4F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D76F49522EA8306A00BFF757 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D716C91E2ECA1B07006DA4F8;
-			remoteInfo = USkateAppV2TV;
-		};
 		D76F496C2EA8306B00BFF757 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D76F49522EA8306A00BFF757 /* Project object */;
@@ -65,27 +29,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D7B1AD992ECA10FA004B2BC9 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				D716C9112ECA1268006DA4F8 /* USkateAppV2Watch Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USkateAppV2Watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D716C8FD2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "USkateAppV2Watch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D716C9072ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "USkateAppV2Watch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D716C91F2ECA1B07006DA4F8 /* USkateAppV2TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USkateAppV2TV.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D716C92D2ECA1B09006DA4F8 /* USkateAppV2TVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USkateAppV2TVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D716C9372ECA1B09006DA4F8 /* USkateAppV2TVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USkateAppV2TVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "USkateAppV2Watch Watch App.app"; path = "/Users/olegbragin/Documents/CrucialSoftware/OSXDevelopment/USkate/uskateappV2/USkateAppV2/build/Debug-watchos/USkateAppV2Watch Watch App.app"; sourceTree = "<absolute>"; };
 		D76F495A2EA8306A00BFF757 /* USkateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USkateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76F496B2EA8306B00BFF757 /* USkateAppV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USkateAppV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76F49752EA8306B00BFF757 /* USkateAppV2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USkateAppV2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,46 +44,9 @@
 			);
 			target = D76F49592EA8306A00BFF757 /* USkateAppV2 */;
 		};
-		D7D753802EE5D386003CF668 /* Exceptions for "USkateAppV2" folder in "USkateAppV2Watch Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Common/CommonServices/WatchConnectivityProvider.swift,
-			);
-			target = D716C8F02ECA1267006DA4F8 /* USkateAppV2Watch Watch App */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D716C8F22ECA1267006DA4F8 /* USkateAppV2Watch Watch App */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "USkateAppV2Watch Watch App";
-			sourceTree = "<group>";
-		};
-		D716C9002ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "USkateAppV2Watch Watch AppTests";
-			sourceTree = "<group>";
-		};
-		D716C90A2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "USkateAppV2Watch Watch AppUITests";
-			sourceTree = "<group>";
-		};
-		D716C9202ECA1B07006DA4F8 /* USkateAppV2TV */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = USkateAppV2TV;
-			sourceTree = "<group>";
-		};
-		D716C9302ECA1B09006DA4F8 /* USkateAppV2TVTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = USkateAppV2TVTests;
-			sourceTree = "<group>";
-		};
-		D716C93A2ECA1B09006DA4F8 /* USkateAppV2TVUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = USkateAppV2TVUITests;
-			sourceTree = "<group>";
-		};
 		D754F6522F4211C000213F89 /* generated */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = generated;
@@ -148,7 +56,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				D76F497D2EA8306B00BFF757 /* Exceptions for "USkateAppV2" folder in "USkateAppV2" target */,
-				D7D753802EE5D386003CF668 /* Exceptions for "USkateAppV2" folder in "USkateAppV2Watch Watch App" target */,
 			);
 			path = USkateAppV2;
 			sourceTree = "<group>";
@@ -166,71 +73,23 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D716C8EE2ECA1267006DA4F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C8FA2ECA1268006DA4F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9042ECA1268006DA4F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C91C2ECA1B07006DA4F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C92A2ECA1B09006DA4F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9342ECA1B09006DA4F8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D76F49572EA8306A00BFF757 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				D754F6452F420A6600213F89 /* ObjectBox.xcframework in Frameworks */,
 				D7625E212F28EEF1004FB165 /* Collections in Frameworks */,
 				D7D753702EDDF777003CF668 /* Valet in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D76F49682EA8306B00BFF757 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D76F49722EA8306B00BFF757 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -249,14 +108,9 @@
 				D76F495C2EA8306A00BFF757 /* USkateAppV2 */,
 				D76F496E2EA8306B00BFF757 /* USkateAppV2Tests */,
 				D76F49782EA8306B00BFF757 /* USkateAppV2UITests */,
-				D716C8F22ECA1267006DA4F8 /* USkateAppV2Watch Watch App */,
-				D716C9002ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests */,
-				D716C90A2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests */,
-				D716C9202ECA1B07006DA4F8 /* USkateAppV2TV */,
-				D716C9302ECA1B09006DA4F8 /* USkateAppV2TVTests */,
-				D716C93A2ECA1B09006DA4F8 /* USkateAppV2TVUITests */,
 				D747F13B2F1E9E7F00C8B2BC /* Frameworks */,
 				D76F495B2EA8306A00BFF757 /* Products */,
+				D7B6DA542F66F67E00810BBC /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -266,155 +120,21 @@
 				D76F495A2EA8306A00BFF757 /* USkateAppV2.app */,
 				D76F496B2EA8306B00BFF757 /* USkateAppV2Tests.xctest */,
 				D76F49752EA8306B00BFF757 /* USkateAppV2UITests.xctest */,
-				D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */,
-				D716C8FD2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests.xctest */,
-				D716C9072ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests.xctest */,
-				D716C91F2ECA1B07006DA4F8 /* USkateAppV2TV.app */,
-				D716C92D2ECA1B09006DA4F8 /* USkateAppV2TVTests.xctest */,
-				D716C9372ECA1B09006DA4F8 /* USkateAppV2TVUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D7B6DA542F66F67E00810BBC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D716C8F02ECA1267006DA4F8 /* USkateAppV2Watch Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D716C9182ECA1268006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2Watch Watch App" */;
-			buildPhases = (
-				D716C8ED2ECA1267006DA4F8 /* Sources */,
-				D716C8EE2ECA1267006DA4F8 /* Frameworks */,
-				D716C8EF2ECA1267006DA4F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D716C8F22ECA1267006DA4F8 /* USkateAppV2Watch Watch App */,
-			);
-			name = "USkateAppV2Watch Watch App";
-			packageProductDependencies = (
-			);
-			productName = "USkateAppV2Watch Watch App";
-			productReference = D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */;
-			productType = "com.apple.product-type.application";
-		};
-		D716C8FC2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D716C9192ECA1268006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2Watch Watch AppTests" */;
-			buildPhases = (
-				D716C8F92ECA1268006DA4F8 /* Sources */,
-				D716C8FA2ECA1268006DA4F8 /* Frameworks */,
-				D716C8FB2ECA1268006DA4F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D716C8FF2ECA1268006DA4F8 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				D716C9002ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests */,
-			);
-			name = "USkateAppV2Watch Watch AppTests";
-			packageProductDependencies = (
-			);
-			productName = "USkateAppV2Watch Watch AppTests";
-			productReference = D716C8FD2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D716C9062ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D716C91A2ECA1268006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2Watch Watch AppUITests" */;
-			buildPhases = (
-				D716C9032ECA1268006DA4F8 /* Sources */,
-				D716C9042ECA1268006DA4F8 /* Frameworks */,
-				D716C9052ECA1268006DA4F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D716C9092ECA1268006DA4F8 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				D716C90A2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests */,
-			);
-			name = "USkateAppV2Watch Watch AppUITests";
-			packageProductDependencies = (
-			);
-			productName = "USkateAppV2Watch Watch AppUITests";
-			productReference = D716C9072ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		D716C91E2ECA1B07006DA4F8 /* USkateAppV2TV */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D716C93F2ECA1B09006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2TV" */;
-			buildPhases = (
-				D716C91B2ECA1B07006DA4F8 /* Sources */,
-				D716C91C2ECA1B07006DA4F8 /* Frameworks */,
-				D716C91D2ECA1B07006DA4F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D716C9202ECA1B07006DA4F8 /* USkateAppV2TV */,
-			);
-			name = USkateAppV2TV;
-			packageProductDependencies = (
-			);
-			productName = USkateAppV2TV;
-			productReference = D716C91F2ECA1B07006DA4F8 /* USkateAppV2TV.app */;
-			productType = "com.apple.product-type.application";
-		};
-		D716C92C2ECA1B09006DA4F8 /* USkateAppV2TVTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D716C9422ECA1B09006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2TVTests" */;
-			buildPhases = (
-				D716C9292ECA1B09006DA4F8 /* Sources */,
-				D716C92A2ECA1B09006DA4F8 /* Frameworks */,
-				D716C92B2ECA1B09006DA4F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D716C92F2ECA1B09006DA4F8 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				D716C9302ECA1B09006DA4F8 /* USkateAppV2TVTests */,
-			);
-			name = USkateAppV2TVTests;
-			packageProductDependencies = (
-			);
-			productName = USkateAppV2TVTests;
-			productReference = D716C92D2ECA1B09006DA4F8 /* USkateAppV2TVTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D716C9362ECA1B09006DA4F8 /* USkateAppV2TVUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D716C9452ECA1B09006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2TVUITests" */;
-			buildPhases = (
-				D716C9332ECA1B09006DA4F8 /* Sources */,
-				D716C9342ECA1B09006DA4F8 /* Frameworks */,
-				D716C9352ECA1B09006DA4F8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D716C9392ECA1B09006DA4F8 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				D716C93A2ECA1B09006DA4F8 /* USkateAppV2TVUITests */,
-			);
-			name = USkateAppV2TVUITests;
-			packageProductDependencies = (
-			);
-			productName = USkateAppV2TVUITests;
-			productReference = D716C9372ECA1B09006DA4F8 /* USkateAppV2TVUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		D76F49592EA8306A00BFF757 /* USkateAppV2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D76F497E2EA8306B00BFF757 /* Build configuration list for PBXNativeTarget "USkateAppV2" */;
@@ -422,12 +142,8 @@
 				D76F49562EA8306A00BFF757 /* Sources */,
 				D76F49572EA8306A00BFF757 /* Frameworks */,
 				D76F49582EA8306A00BFF757 /* Resources */,
-				D7B1AD992ECA10FA004B2BC9 /* Embed Watch Content */,
 			);
 			buildRules = (
-			);
-			dependencies = (
-				D716C9102ECA1268006DA4F8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D754F6522F4211C000213F89 /* generated */,
@@ -460,8 +176,6 @@
 				D76F496E2EA8306B00BFF757 /* USkateAppV2Tests */,
 			);
 			name = USkateAppV2Tests;
-			packageProductDependencies = (
-			);
 			productName = USkateAppV2Tests;
 			productReference = D76F496B2EA8306B00BFF757 /* USkateAppV2Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -483,8 +197,6 @@
 				D76F49782EA8306B00BFF757 /* USkateAppV2UITests */,
 			);
 			name = USkateAppV2UITests;
-			packageProductDependencies = (
-			);
 			productName = USkateAppV2UITests;
 			productReference = D76F49752EA8306B00BFF757 /* USkateAppV2UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -499,28 +211,6 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					D716C8F02ECA1267006DA4F8 = {
-						CreatedOnToolsVersion = 26.1.1;
-					};
-					D716C8FC2ECA1268006DA4F8 = {
-						CreatedOnToolsVersion = 26.1.1;
-						TestTargetID = D716C8F02ECA1267006DA4F8;
-					};
-					D716C9062ECA1268006DA4F8 = {
-						CreatedOnToolsVersion = 26.1.1;
-						TestTargetID = D716C8F02ECA1267006DA4F8;
-					};
-					D716C91E2ECA1B07006DA4F8 = {
-						CreatedOnToolsVersion = 26.1.1;
-					};
-					D716C92C2ECA1B09006DA4F8 = {
-						CreatedOnToolsVersion = 26.1.1;
-						TestTargetID = D716C91E2ECA1B07006DA4F8;
-					};
-					D716C9362ECA1B09006DA4F8 = {
-						CreatedOnToolsVersion = 26.1.1;
-						TestTargetID = D716C91E2ECA1B07006DA4F8;
-					};
 					D76F49592EA8306A00BFF757 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
@@ -549,7 +239,7 @@
 				D7625E1F2F28EEF1004FB165 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				D754F6432F420A6600213F89 /* XCRemoteSwiftPackageReference "objectbox-swift-spm" */,
 			);
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = D76F495B2EA8306A00BFF757 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -557,178 +247,47 @@
 				D76F49592EA8306A00BFF757 /* USkateAppV2 */,
 				D76F496A2EA8306B00BFF757 /* USkateAppV2Tests */,
 				D76F49742EA8306B00BFF757 /* USkateAppV2UITests */,
-				D716C8F02ECA1267006DA4F8 /* USkateAppV2Watch Watch App */,
-				D716C8FC2ECA1268006DA4F8 /* USkateAppV2Watch Watch AppTests */,
-				D716C9062ECA1268006DA4F8 /* USkateAppV2Watch Watch AppUITests */,
-				D716C91E2ECA1B07006DA4F8 /* USkateAppV2TV */,
-				D716C92C2ECA1B09006DA4F8 /* USkateAppV2TVTests */,
-				D716C9362ECA1B09006DA4F8 /* USkateAppV2TVUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D716C8EF2ECA1267006DA4F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C8FB2ECA1268006DA4F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9052ECA1268006DA4F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C91D2ECA1B07006DA4F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C92B2ECA1B09006DA4F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9352ECA1B09006DA4F8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D76F49582EA8306A00BFF757 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D76F49692EA8306B00BFF757 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D76F49732EA8306B00BFF757 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D716C8ED2ECA1267006DA4F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C8F92ECA1268006DA4F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9032ECA1268006DA4F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C91B2ECA1B07006DA4F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9292ECA1B09006DA4F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D716C9332ECA1B09006DA4F8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D76F49562EA8306A00BFF757 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D76F49672EA8306B00BFF757 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D76F49712EA8306B00BFF757 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D716C8FF2ECA1268006DA4F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D716C8F02ECA1267006DA4F8 /* USkateAppV2Watch Watch App */;
-			targetProxy = D716C8FE2ECA1268006DA4F8 /* PBXContainerItemProxy */;
-		};
-		D716C9092ECA1268006DA4F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D716C8F02ECA1267006DA4F8 /* USkateAppV2Watch Watch App */;
-			targetProxy = D716C9082ECA1268006DA4F8 /* PBXContainerItemProxy */;
-		};
-		D716C9102ECA1268006DA4F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilters = (
-				ios,
-				xros,
-			);
-			target = D716C8F02ECA1267006DA4F8 /* USkateAppV2Watch Watch App */;
-			targetProxy = D716C90F2ECA1268006DA4F8 /* PBXContainerItemProxy */;
-		};
-		D716C92F2ECA1B09006DA4F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D716C91E2ECA1B07006DA4F8 /* USkateAppV2TV */;
-			targetProxy = D716C92E2ECA1B09006DA4F8 /* PBXContainerItemProxy */;
-		};
-		D716C9392ECA1B09006DA4F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D716C91E2ECA1B07006DA4F8 /* USkateAppV2TV */;
-			targetProxy = D716C9382ECA1B09006DA4F8 /* PBXContainerItemProxy */;
-		};
 		D76F496D2EA8306B00BFF757 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D76F49592EA8306A00BFF757 /* USkateAppV2 */;
@@ -742,325 +301,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		D716C9122ECA1268006DA4F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = USkateAppV2Watch;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.crucialsoftware.USkateAppV2;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		D716C9132ECA1268006DA4F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = USkateAppV2Watch;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.crucialsoftware.USkateAppV2;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Release;
-		};
-		D716C9142ECA1268006DA4F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.crucialsoftware.USkateAppV2Watch-Watch-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USkateAppV2Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/USkateAppV2Watch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		D716C9152ECA1268006DA4F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.crucialsoftware.USkateAppV2Watch-Watch-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USkateAppV2Watch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/USkateAppV2Watch Watch App";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Release;
-		};
-		D716C9162ECA1268006DA4F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.crucialsoftware.USkateAppV2Watch-Watch-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "USkateAppV2Watch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		D716C9172ECA1268006DA4F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.crucialsoftware.USkateAppV2Watch-Watch-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "USkateAppV2Watch Watch App";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Release;
-		};
-		D716C9402ECA1B09006DA4F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2TV;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		D716C9412ECA1B09006DA4F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2TV;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 26.1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D716C9432ECA1B09006DA4F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2TVTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USkateAppV2TV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/USkateAppV2TV";
-				TVOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		D716C9442ECA1B09006DA4F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2TVTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/USkateAppV2TV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/USkateAppV2TV";
-				TVOS_DEPLOYMENT_TARGET = 26.1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D716C9462ECA1B09006DA4F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2TVUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = USkateAppV2TV;
-				TVOS_DEPLOYMENT_TARGET = 26.1;
-			};
-			name = Debug;
-		};
-		D716C9472ECA1B09006DA4F8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T2LC74XB36;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crucialsoftware.USkateAppV2TVUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = USkateAppV2TV;
-				TVOS_DEPLOYMENT_TARGET = 26.1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D76F497F2EA8306B00BFF757 /* Debug */ = {
+		D76F497F2EA8306B00BFF757 /* Debug configuration for PBXNativeTarget "USkateAppV2" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1108,7 +349,7 @@
 			};
 			name = Debug;
 		};
-		D76F49802EA8306B00BFF757 /* Release */ = {
+		D76F49802EA8306B00BFF757 /* Release configuration for PBXNativeTarget "USkateAppV2" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1156,7 +397,7 @@
 			};
 			name = Release;
 		};
-		D76F49812EA8306B00BFF757 /* Debug */ = {
+		D76F49812EA8306B00BFF757 /* Debug configuration for PBXProject "USkateAppV2" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1222,7 +463,7 @@
 			};
 			name = Debug;
 		};
-		D76F49822EA8306B00BFF757 /* Release */ = {
+		D76F49822EA8306B00BFF757 /* Release configuration for PBXProject "USkateAppV2" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1280,7 +521,7 @@
 			};
 			name = Release;
 		};
-		D76F49842EA8306B00BFF757 /* Debug */ = {
+		D76F49842EA8306B00BFF757 /* Debug configuration for PBXNativeTarget "USkateAppV2Tests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1307,7 +548,7 @@
 			};
 			name = Debug;
 		};
-		D76F49852EA8306B00BFF757 /* Release */ = {
+		D76F49852EA8306B00BFF757 /* Release configuration for PBXNativeTarget "USkateAppV2Tests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1334,7 +575,7 @@
 			};
 			name = Release;
 		};
-		D76F49872EA8306B00BFF757 /* Debug */ = {
+		D76F49872EA8306B00BFF757 /* Debug configuration for PBXNativeTarget "USkateAppV2UITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1360,7 +601,7 @@
 			};
 			name = Debug;
 		};
-		D76F49882EA8306B00BFF757 /* Release */ = {
+		D76F49882EA8306B00BFF757 /* Release configuration for PBXNativeTarget "USkateAppV2UITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1389,94 +630,36 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D716C9182ECA1268006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2Watch Watch App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D716C9122ECA1268006DA4F8 /* Debug */,
-				D716C9132ECA1268006DA4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D716C9192ECA1268006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2Watch Watch AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D716C9142ECA1268006DA4F8 /* Debug */,
-				D716C9152ECA1268006DA4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D716C91A2ECA1268006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2Watch Watch AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D716C9162ECA1268006DA4F8 /* Debug */,
-				D716C9172ECA1268006DA4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D716C93F2ECA1B09006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2TV" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D716C9402ECA1B09006DA4F8 /* Debug */,
-				D716C9412ECA1B09006DA4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D716C9422ECA1B09006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2TVTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D716C9432ECA1B09006DA4F8 /* Debug */,
-				D716C9442ECA1B09006DA4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D716C9452ECA1B09006DA4F8 /* Build configuration list for PBXNativeTarget "USkateAppV2TVUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D716C9462ECA1B09006DA4F8 /* Debug */,
-				D716C9472ECA1B09006DA4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D76F49552EA8306A00BFF757 /* Build configuration list for PBXProject "USkateAppV2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D76F49812EA8306B00BFF757 /* Debug */,
-				D76F49822EA8306B00BFF757 /* Release */,
+				D76F49812EA8306B00BFF757 /* Debug configuration for PBXProject "USkateAppV2" */,
+				D76F49822EA8306B00BFF757 /* Release configuration for PBXProject "USkateAppV2" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D76F497E2EA8306B00BFF757 /* Build configuration list for PBXNativeTarget "USkateAppV2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D76F497F2EA8306B00BFF757 /* Debug */,
-				D76F49802EA8306B00BFF757 /* Release */,
+				D76F497F2EA8306B00BFF757 /* Debug configuration for PBXNativeTarget "USkateAppV2" */,
+				D76F49802EA8306B00BFF757 /* Release configuration for PBXNativeTarget "USkateAppV2" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D76F49832EA8306B00BFF757 /* Build configuration list for PBXNativeTarget "USkateAppV2Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D76F49842EA8306B00BFF757 /* Debug */,
-				D76F49852EA8306B00BFF757 /* Release */,
+				D76F49842EA8306B00BFF757 /* Debug configuration for PBXNativeTarget "USkateAppV2Tests" */,
+				D76F49852EA8306B00BFF757 /* Release configuration for PBXNativeTarget "USkateAppV2Tests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D76F49862EA8306B00BFF757 /* Build configuration list for PBXNativeTarget "USkateAppV2UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D76F49872EA8306B00BFF757 /* Debug */,
-				D76F49882EA8306B00BFF757 /* Release */,
+				D76F49872EA8306B00BFF757 /* Debug configuration for PBXNativeTarget "USkateAppV2UITests" */,
+				D76F49882EA8306B00BFF757 /* Release configuration for PBXNativeTarget "USkateAppV2UITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

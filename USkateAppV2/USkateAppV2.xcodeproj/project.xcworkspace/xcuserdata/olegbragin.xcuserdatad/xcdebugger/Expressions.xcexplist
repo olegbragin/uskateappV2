@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in USCalendarDayView.body.getter:USCalendarDayView.swift">
+      </ContextState>
+      <ContextState
          contextName = "AddEditEventView.saveProfile():AddEditEventView.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,10 +17,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in USCalendarDayView.body.getter:USCalendarDayView.swift">
+         contextName = "closure #1 in closure #2 in SingleCalendarView.body.getter:SingleCalendarView.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #2 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in AddEditEventView.body.getter:AddEditEventView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in closure #1 in SingleCalendarSummaryView.body.getter:SingleCalendarSummaryView.swift">
@@ -30,6 +33,14 @@
       </ContextState>
       <ContextState
          contextName = "USCalendarDayModel.init(text:isToday:isInCurrentMonth:columnCount:date:events:isDayNumber:):USCalendarDayModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #7 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #2 in CalendarsViewModel.fetch():CalendarsViewModel.swift">
@@ -54,13 +65,13 @@
          contextName = "WatchConnectivityProvider.send(message:):WatchConnectivityProvider.swift">
          <PersistentStrings>
             <PersistentString
-               value = "session.isWatchAppInstalled">
+               value = "session.activationState">
             </PersistentString>
             <PersistentString
                value = "session.isPaired">
             </PersistentString>
             <PersistentString
-               value = "session.activationState">
+               value = "session.isWatchAppInstalled">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -84,10 +95,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in USCalendarWeekModel.init(weekProvider:):USCalendarWeekModel.swift">
+         contextName = "USCalendarYearModel.months.getter:USCalendarYearModel.swift">
       </ContextState>
       <ContextState
-         contextName = "USCalendarYearModel.months.getter:USCalendarYearModel.swift">
+         contextName = "closure #1 in USCalendarWeekModel.init(weekProvider:):USCalendarWeekModel.swift">
       </ContextState>
       <ContextState
          contextName = "SingleCalendarDetailViewModel.fetch():SingleCalendarDetailViewModel.swift">
@@ -102,6 +113,9 @@
                value = "fetchedCalendar">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in USPopoverView.body.getter:USPopoverView.swift">
       </ContextState>
       <ContextState
          contextName = "USCalendarViewModel.handleMagnify(magnification:):USCalendar.swift">
@@ -157,6 +171,11 @@
       </ContextState>
       <ContextState
          contextName = "SingleCalendarView.body.getter:SingleCalendarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in USCalendarMonthProvider.getCalendarWeeks(ofMonth:ofYear:events:):USCalendarMonthProvider.swift">
@@ -174,6 +193,14 @@
          <PersistentStrings>
             <PersistentString
                value = "title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #7 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isLegendSheetPresented">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

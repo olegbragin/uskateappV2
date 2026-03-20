@@ -17,4 +17,6 @@ protocol CalendarStorage {
     func getAllCalendars() async throws -> [CalendarDataSource]
     
     func addEditEvent(_ event: EventDataSource, calendarId: Int64) async throws -> Int64
+    
+    func removeEvents(_ eventId: [Int64], calendarId: Int64) async throws
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EventDataSource: Identifiable {
+struct EventDataSource: Identifiable, Hashable {
     var id: Int64
     var name: String
     var color: String

@@ -17,6 +17,7 @@ struct RootView: View {
             RootContentView(selector: $selector)
         } detail: {
             RootDetailView(selector: $selector)
+                .background(.colorBackgroundMain)
         }
         .padding(0)
     }
