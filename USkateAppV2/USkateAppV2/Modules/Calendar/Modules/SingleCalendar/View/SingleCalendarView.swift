@@ -42,6 +42,7 @@ struct SingleCalendarView: View {
                 Task {
                     try? await viewModel.addEvent(id: eventToCommit.id, name: eventToCommit.name, date: eventToCommit.date, color: eventToCommit.color)
                     try? await viewModel.fetch()
+                    viewModel.addEditEventModel.reset()
                 }
             }
         }

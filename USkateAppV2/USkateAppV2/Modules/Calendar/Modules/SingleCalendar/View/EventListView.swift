@@ -58,7 +58,7 @@ struct EventListView: View {
     }
     
     private func editEventViewModel(for event: EventDataSource) -> AddEditEventViewModel {
-        var editEventViewModel = AddEditEventViewModel()
+        let editEventViewModel = viewModel.addEditEventModel
         editEventViewModel.selectedDay = viewModel.selectedDay
         editEventViewModel.eventName = event.name
         editEventViewModel.eventId = event.id

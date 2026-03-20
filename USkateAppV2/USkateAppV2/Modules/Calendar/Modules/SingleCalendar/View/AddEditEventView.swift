@@ -33,7 +33,6 @@ struct AddEditEventView: View {
                 Button("Сохранить") {
                     Task {
                         if viewModel.save() {
-                            viewModel.reset()
                             dismiss()
                         }
                     }

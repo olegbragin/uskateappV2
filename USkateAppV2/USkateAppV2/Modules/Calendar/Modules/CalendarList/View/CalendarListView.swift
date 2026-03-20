@@ -16,7 +16,8 @@ struct CalendarListView: View {
     var body: some View {
         List(selection: $selector.selectedItem) {
             ForEach(viewModel.calendars.indices, id: \.self) { index in
-                Group {
+                HStack {
+                    Image(systemName: "calendar")
                     if editMode?.wrappedValue == .active {
                         TextField("Введите название календаря", text: $viewModel.calendars[index].name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -24,10 +25,20 @@ struct CalendarListView: View {
                         Text(viewModel.calendars[index].name)
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .fill(Color.clear)
+                        .stroke(Color.black, lineWidth: 1)
+                )
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
                 .tag(RootSelection.calendarGallery(selectedCalendarId: viewModel.calendars[index].id))
             }
             .onDelete(perform: deleteItems)
         }
+        .listStyle(.insetGrouped)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 if editMode?.wrappedValue == .active {
