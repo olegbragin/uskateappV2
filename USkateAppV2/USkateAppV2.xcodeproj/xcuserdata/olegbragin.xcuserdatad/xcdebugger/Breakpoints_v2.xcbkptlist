@@ -14,8 +14,8 @@
             filePath = "USkateAppV2/DSKit/Components/Calendar/USCalendarMonth/USCalendarMonthView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -111,8 +111,8 @@
             filePath = "USkateAppV2/DSKit/Components/Calendar/USCalendarYear/USCalendarYearView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -143,9 +143,9 @@
             filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/Model/SingleCalendarModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "save()"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "saveCalendar()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -159,8 +159,8 @@
             filePath = "USkateAppV2/DSKit/Components/Calendar/USCalendarYear/USCalendarYearView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -175,8 +175,8 @@
             filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/Model/SingleCalendarModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "selectedEvents"
             landmarkType = "24">
          </BreakpointContent>
@@ -191,8 +191,8 @@
             filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/Model/SingleCalendarModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "selectedEvents"
             landmarkType = "24">
          </BreakpointContent>
@@ -207,8 +207,8 @@
             filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/View/SingleCalendarView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -223,8 +223,8 @@
             filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/View/EventListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "editEventViewModel(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -241,52 +241,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
             endingLineNumber = "42"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "511A9340-B389-490F-8433-F6220B1DA66E - b46281c55a0902cb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: &#x3c4;_1_0, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.position(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;)&gt; in USkateAppV2.USPopoverView.body.getter : some"
-                  moduleName = "USkateAppV2.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olegbragin/Documents/CrucialSoftware/OSXDevelopment/USkate/uskateappV2/USkateAppV2/USkateAppV2/DSKit/Components/USPopoverView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "511A9340-B389-490F-8433-F6220B1DA66E - b46281c55a0902cb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: &#x3c4;_1_0, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.position(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;)&gt; in USkateAppV2.USPopoverView.body.getter : some"
-                  moduleName = "USkateAppV2.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olegbragin/Documents/CrucialSoftware/OSXDevelopment/USkate/uskateappV2/USkateAppV2/USkateAppV2/DSKit/Components/USPopoverView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08BC5307-7D0D-4FE3-A4F5-43F50A31A018"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/View/SingleCalendarView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -311,7 +265,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "569D4392-3827-4370-B7F3-5A0B210E6539"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/Model/AddEditEventViewModel.swift"
@@ -321,6 +275,54 @@
             endingLineNumber = "26"
             landmarkName = "save()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "27F01CF1-E3ED-4ED2-9BB8-3412F3F5918A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/Model/SingleCalendarModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "changeEvent(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "50224F71-6F5E-4FC1-9059-98558E65CC50"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/View/SingleCalendarView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83D15A71-B01B-4A1C-9B9E-C0F52C5043F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USkateAppV2/Modules/Calendar/Modules/SingleCalendar/View/SingleCalendarView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

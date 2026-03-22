@@ -11,6 +11,7 @@ struct USCalendarYearView: View {
     @Bindable var viewModel: USCalendarYearModel
     @Binding var selectedMonth: Int
     @Binding var selectedDay: Date?
+    @Binding var isLongPressed: Bool
     
     // Временный масштаб во время жеста (сбрасывается после)
     @GestureState private var tempMagnification: CGFloat = 1.0
@@ -30,7 +31,8 @@ struct USCalendarYearView: View {
                         let month = viewModel.months[index]
                         USCalendarMonthView(
                             model: month,
-                            selectedDay: $selectedDay
+                            selectedDay: $selectedDay,
+                            isLongPressed: $isLongPressed
                         )
                         .onTapGesture {
                             selectedMonth = month.number

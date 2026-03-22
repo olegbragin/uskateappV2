@@ -46,6 +46,9 @@
          contextName = "closure #2 in CalendarsViewModel.fetch():CalendarsViewModel.swift">
       </ContextState>
       <ContextState
+         contextName = "AddEditEventViewModel.save():AddEditEventViewModel.swift">
+      </ContextState>
+      <ContextState
          contextName = "static ObjectBoxCalendarStorageTests.$s16USkateAppV2Tests024ObjectBoxCalendarStorageD0C021testDeleteNonExistentG04TestfMp_17Z12d2aeee615323b0fMu_@Sendable ():@__swiftmacro_16USkateAppV2Tests024ObjectBoxCalendarStorageD0C021testDeleteNonExistentG04TestfMp_.swift">
          <PersistentStrings>
             <PersistentString
@@ -83,6 +86,14 @@
             </PersistentString>
             <PersistentString
                value = "viewModel.calendarEvents()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarModel.changeEvent(_:):SingleCalendarModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "yearModel.events">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

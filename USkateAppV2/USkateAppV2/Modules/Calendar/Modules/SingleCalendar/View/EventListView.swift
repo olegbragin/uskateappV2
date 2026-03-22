@@ -47,6 +47,8 @@ struct EventListView: View {
                 }
             }
         }
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
     }
 
     private func deleteItems(offsets: IndexSet) {

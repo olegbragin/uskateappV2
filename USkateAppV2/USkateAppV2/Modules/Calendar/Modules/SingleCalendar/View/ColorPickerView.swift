@@ -12,34 +12,32 @@ struct ColorPickerView: View {
     let colors: [ColorOption] = ColorOption.allCases
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 24) {
-                ForEach(colors, id: \.self) { colorOption in
-                    Button(action: {
-                        selectedColor = colorOption
-                    }) {
-                        VStack(spacing: 6) {
-                            Circle()
-                                .fill(colorOption.color)
-                                .frame(width: 50, height: 50)
-                                .overlay(
-                                    Circle()
-                                        .stroke(selectedColor?.color == colorOption.color ?
-                                                Color.accentColor : Color.clear,
-                                                lineWidth: 3)
-                                )
-                            
-                            Text(colorOption.name)
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                                .lineLimit(1)
-                        }
+        HStack(spacing: 24) {
+            ForEach(colors, id: \.self) { colorOption in
+                Button(action: {
+                    selectedColor = colorOption
+                }) {
+                    VStack(spacing: 6) {
+                        Circle()
+                            .fill(colorOption.color)
+                            .frame(width: 50, height: 50)
+                            .overlay(
+                                Circle()
+                                    .stroke(selectedColor?.color == colorOption.color ?
+                                            Color.accentColor : Color.clear,
+                                            lineWidth: 3)
+                            )
+                        
+                        Text(colorOption.name)
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
                     }
-                    .buttonStyle(.plain)
                 }
+                .buttonStyle(.plain)
             }
-            .padding(.horizontal)
         }
+        .padding(.horizontal)
     }
 }
 

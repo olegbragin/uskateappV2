@@ -23,7 +23,7 @@ final class USCalendarYearModel {
     var columnCount: Int = 1
     var scrollPosition: CGFloat = 0
     var events: [EventDataSource] = []
-        
+    
     private let baseSensitivity: CGFloat = 0.12
     private let minSensitivity: CGFloat = 0.08
 

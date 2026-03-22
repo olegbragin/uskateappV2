@@ -11,15 +11,21 @@ import Observation
 @Observable
 final class SingleCalendarModel {
     private let manager = CalendarManager()
+    private var originalEvents: [EventDataSource] = []
+    private var changedEvents: [EventDataSource] = []
     
     let id: Int64
     
     var label: String = ""
     var selectedMonth: Int = 0
     var selectedDay: Date?
+    var selectedColor: ColorOption?
+    
     var yearModel: USCalendarYearModel = .init(year: 2026, numberOfColumns: 1)
     var addEditEventModel = AddEditEventViewModel()
     var legendViewModel = SingleCalendarSummaryModel(year: 2026, events: [])
+    
+    var isMultiselectDayEnabled: Bool = false
     
     var selectedEvents: [EventDataSource] {
         guard let selectedDay else { return yearModel.events }
@@ -39,6 +45,7 @@ final class SingleCalendarModel {
             self.yearModel.year = persistedCalendar.year
             self.yearModel.columnCount = persistedCalendar.numberOfColumns
             self.yearModel.events = persistedCalendar.events
+            self.originalEvents = self.yearModel.events
             
             self.addEditEventModel.selectedDay = selectedDay
             self.legendViewModel = SingleCalendarSummaryModel(year: yearModel.year, events: group(events: yearModel.events))
@@ -55,12 +62,38 @@ final class SingleCalendarModel {
         yearModel.events.removeAll(where: { ids.contains($0.id) })
     }
     
-    func save() {
+    func changeEvent(_ event: EventDataSource) {
+        if changedEvents.contains(event) {
+            changedEvents.remove(at: changedEvents.firstIndex(of: event)!)
+        } else {
+            changedEvents.append(event)
+        }
+        yearModel.events = originalEvents + changedEvents
+        selectedDay = nil
+    }
+    
+    func saveCalendar() {
         Task {
             guard var persistedCalendar = try? await self.manager.getCalendar(id: self.id) else { return }
             persistedCalendar.numberOfColumns = yearModel.columnCount
             try? await manager.updateCalendar(persistedCalendar)
         }
+    }
+    
+    func commitMultipleChanges() {
+        changedEvents.forEach { event in
+            Task {
+                try await addEvent(id: event.id, name: event.name, date: event.date, color: event.color)
+            }
+        }
+        changedEvents = []
+        isMultiselectDayEnabled.toggle()
+    }
+    
+    func cancelMultipleChanges() {
+        changedEvents = []
+        yearModel.events = originalEvents
+        isMultiselectDayEnabled.toggle()
     }
     
     func cancel() {

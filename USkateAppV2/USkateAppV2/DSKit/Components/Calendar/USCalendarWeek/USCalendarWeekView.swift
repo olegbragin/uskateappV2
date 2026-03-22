@@ -10,6 +10,7 @@ import SwiftUI
 struct USCalendarWeekView: View {
     @Bindable var model: USCalendarWeekModel
     @Binding var selectedDay: Date?
+    @Binding var isLongPressed: Bool
     
     var body: some View {
         HStack(spacing: 0) {
@@ -21,6 +22,15 @@ struct USCalendarWeekView: View {
                 .onTapGesture {
                     selectedDay = day.date
                 }
+                .onLongPressGesture(
+                    minimumDuration: 2.5,
+                    pressing: { isPressing in
+                        if isPressing {
+                            isLongPressed = true
+                        }
+                    },
+                    perform: {}
+                )
             }
         }
     }
@@ -43,6 +53,7 @@ struct USCalendarWeekView: View {
             ],
             columnCount: 2
         ),
-        selectedDay: .constant(nil)
+        selectedDay: .constant(nil),
+        isLongPressed: .constant(false)
     )
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct USCalendarMonthView: View {
     @Bindable var model: USCalendarMonthModel
     @Binding var selectedDay: Date?
+    @Binding var isLongPressed: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -20,7 +21,8 @@ struct USCalendarMonthView: View {
                 ForEach(model.weeks) { week in
                     USCalendarWeekView(
                         model: week,
-                        selectedDay: $selectedDay
+                        selectedDay: $selectedDay,
+                        isLongPressed: $isLongPressed
                     )
                 }
             }
@@ -31,6 +33,7 @@ struct USCalendarMonthView: View {
 #Preview {
     USCalendarMonthView(
         model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 3),
-        selectedDay: .constant(Date())
+        selectedDay: .constant(Date()),
+        isLongPressed: .constant(false)
     )
 }
