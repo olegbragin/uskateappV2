@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct USCalendarWeekView: View {
+    // Для тактильной отдачи
+    private let hapticFeedback = UINotificationFeedbackGenerator()
+    
     @Bindable var viewModel: USCalendarWeekModel
     
     var body: some View {
@@ -21,14 +24,20 @@ struct USCalendarWeekView: View {
                     viewModel.select(day: day.dateComponents?.date)
                 }
                 .onLongPressGesture(
-                    minimumDuration: 2.5,
+                    minimumDuration: 3.5,
                     pressing: { isPressing in
                         if isPressing {
-                            viewModel.isLongPressed = true
+                            viewModel.selectionMode = .multiple
+                            hapticFeedback.notificationOccurred(.success)
                         }
                     },
                     perform: {}
                 )
+            }
+        }
+        .onChange(of: viewModel.selectionMode) { oldValue, newValue in
+            if oldValue != newValue, newValue == .multiple {
+                hapticFeedback.notificationOccurred(.success)
             }
         }
     }

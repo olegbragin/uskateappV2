@@ -5,7 +5,6 @@
 //  Created by Oleg Bragin on 04.02.2026.
 //
 
-import UIKit
 import SwiftUI
 
 struct SingleCalendarView: View {
@@ -14,22 +13,14 @@ struct SingleCalendarView: View {
     @State private var isLegendSheetPresented = false
     @State private var event: EventDataSource = .init(name: "", date: Date(), color: "")
     
-    // Для тактильной отдачи (опционально)
-    private let hapticFeedback = UINotificationFeedbackGenerator()
-    
     var body: some View {
         VStack {
-            if viewModel.isMultiselectDayEnabled {
+            if viewModel.yearModel.selectionMode == .multiple {
                 ColorPickerView(selectedColor: $viewModel.selectedColor)
             }
             USCalendarYearView(
                 viewModel: viewModel.yearModel
             )
-        }
-        .onChange(of: viewModel.isMultiselectDayEnabled) {
-            if $0 != $1, $1 {
-                hapticFeedback.notificationOccurred(.warning)
-            }
         }
         .onChange(of: viewModel.yearModel.numberOfColumns) {
             if $0 != $1 {
@@ -37,10 +28,9 @@ struct SingleCalendarView: View {
             }
         }
         .onChange(of: viewModel.yearModel.selectedDays) { _, newValue in
-            if viewModel.isMultiselectDayEnabled, let selectedDay = newValue.first {
+            if viewModel.yearModel.selectionMode == .multiple, let selectedDay = newValue.first {
                 if let selectedColor = viewModel.selectedColor {
                     viewModel.changeEvent(.init(name: "Event1", date: selectedDay, color: selectedColor.colorName))
-                    hapticFeedback.notificationOccurred(.success)
                 }
             } else {
                 isEditSheetPresented = newValue.first != nil
@@ -60,19 +50,18 @@ struct SingleCalendarView: View {
         .toolbar {
             ToolbarItem {
                 Button(
-                    viewModel.isMultiselectDayEnabled ? "Save" : "Multiselect",
-                    systemImage: viewModel.isMultiselectDayEnabled ? "checkmark" : "plus.rectangle.on.rectangle"
+                    viewModel.yearModel.selectionMode == .multiple ? "Save" : "Multiselect",
+                    systemImage: viewModel.yearModel.selectionMode == .multiple ? "checkmark" : "plus.rectangle.on.rectangle"
                 ) {
-                    if viewModel.isMultiselectDayEnabled {
+                    if viewModel.yearModel.selectionMode == .multiple {
                         viewModel.commitMultipleChanges()
                     } else {
-                        hapticFeedback.notificationOccurred(.warning)
-                        viewModel.isMultiselectDayEnabled.toggle()
+                        viewModel.yearModel.toggleSelectionMode()
                     }
                 }
             }
             ToolbarItem {
-                if viewModel.isMultiselectDayEnabled {
+                if viewModel.yearModel.selectionMode == .multiple {
                     Button("Cancel") {
                         viewModel.cancelMultipleChanges()
                     }
@@ -90,7 +79,7 @@ struct SingleCalendarView: View {
             }
         }
         .sheet(isPresented: $isEditSheetPresented) {
-            if !viewModel.isMultiselectDayEnabled {
+            if viewModel.yearModel.selectionMode == .single {
                 EventListView(viewModel: viewModel)
             }
         }

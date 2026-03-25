@@ -24,7 +24,6 @@ final class SingleCalendarModel {
     var yearModel: USCalendarYearModel
     var addEditEventModel: AddEditEventViewModel
     var legendViewModel: SingleCalendarSummaryModel
-    var isMultiselectDayEnabled: Bool = false
     
     var selectedEvents: [EventDataSource] {
         guard !yearModel.selectedDays.isEmpty else { return [] }
@@ -101,13 +100,13 @@ final class SingleCalendarModel {
             }
         }
         changedEvents = []
-        isMultiselectDayEnabled.toggle()
+        yearModel.toggleSelectionMode()
     }
     
     func cancelMultipleChanges() {
         changedEvents = []
         // yearModel.events = originalEvents
-        isMultiselectDayEnabled.toggle()
+        yearModel.toggleSelectionMode()
     }
     
     func cancel() {

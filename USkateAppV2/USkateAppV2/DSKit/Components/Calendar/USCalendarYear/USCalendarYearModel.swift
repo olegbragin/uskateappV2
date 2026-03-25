@@ -51,6 +51,11 @@ final class USCalendarYearModel {
         }
     }
     
+    func toggleSelectionMode() {
+        let currentSelectionMode = selectionMode
+        selectionMode = currentSelectionMode == .single ? .multiple : .single
+    }
+    
     /// Обрабатывает жест масштабирования
     /// - Parameters:
     ///   - magnification: Текущий коэффициент масштабирования
