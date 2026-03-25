@@ -23,47 +23,34 @@ struct SingleCalendarView: View {
                 ColorPickerView(selectedColor: $viewModel.selectedColor)
             }
             USCalendarYearView(
-                viewModel: viewModel.yearModel,
-                selectedMonth: $viewModel.selectedMonth,
-                selectedDay: $viewModel.selectedDay,
-                isLongPressed: $viewModel.isMultiselectDayEnabled
+                viewModel: viewModel.yearModel
             )
-        }
-        .refreshable {
-            try? await viewModel.fetch()
-        }
-        .task(id: viewModel.id) {
-            try? await viewModel.fetch()
         }
         .onChange(of: viewModel.isMultiselectDayEnabled) {
             if $0 != $1, $1 {
-                hapticFeedback.notificationOccurred(.warning)        
+                hapticFeedback.notificationOccurred(.warning)
             }
         }
-        .onChange(of: viewModel.yearModel.columnCount) {
+        .onChange(of: viewModel.yearModel.numberOfColumns) {
             if $0 != $1 {
                 viewModel.saveCalendar()
             }
         }
-        .onChange(of: viewModel.selectedDay) { _, newValue in
-            if viewModel.isMultiselectDayEnabled, let selectedDay = newValue {
+        .onChange(of: viewModel.yearModel.selectedDays) { _, newValue in
+            if viewModel.isMultiselectDayEnabled, let selectedDay = newValue.first {
                 if let selectedColor = viewModel.selectedColor {
                     viewModel.changeEvent(.init(name: "Event1", date: selectedDay, color: selectedColor.colorName))
                     hapticFeedback.notificationOccurred(.success)
                 }
             } else {
-                isEditSheetPresented = newValue != nil
-                viewModel.addEditEventModel.selectedDay = newValue
+                isEditSheetPresented = newValue.first != nil
+                viewModel.addEditEventModel.selectedDay = newValue.first
             }
-        }
-        .onChange(of: viewModel.addEditEventModel.selectedDay) { _, newValue in
-            viewModel.selectedDay = newValue
         }
         .onChange(of: viewModel.addEditEventModel.event) {
             if $0 != $1, let eventToCommit = $1 {
                 Task {
                     try? await viewModel.addEvent(id: eventToCommit.id, name: eventToCommit.name, date: eventToCommit.date, color: eventToCommit.color)
-                    try? await viewModel.fetch()
                     viewModel.addEditEventModel.reset()
                 }
             }

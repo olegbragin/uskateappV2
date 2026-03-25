@@ -10,26 +10,39 @@ import Observation
 
 @Observable
 final class USCalendarMonthModel: Identifiable {
-    let id = UUID()
-    let monthProvider: USCalendarMonthProvider
+    let id: Int
     let label: String
     let number: Int
-    
+    let weekDaySymbols: [String]
     let weeks: [USCalendarWeekModel]
-    var selectedDay: USCalendarDayModel = .init(text: "sample1")
     
-    init(monthProvider: USCalendarMonthProvider, columnCount: Int) {
-        self.monthProvider = monthProvider
-        self.weeks = monthProvider.weeks.enumerated().map {
-            USCalendarWeekModel(
-                weekNumber: $0.offset,
-                monthNumber: monthProvider.month,
-                year: monthProvider.year,
-                days: $0.element.days,
-                columnCount: columnCount,
-            )
+    var selectedDays: Set<Date> = []
+    var selectionMode: USCalendarSelectionMode = .single
+    var isLongPressed: Bool = false
+        
+    init(dto: USCalendarMonthDataSource) {
+        self.id = dto.number
+        self.label = dto.label
+        self.number = dto.number
+        self.weekDaySymbols = dto.weekDaySymbols
+        self.weeks = dto.weeks.map {
+            .init(dto: $0)
         }
-        self.label = monthProvider.shortLocalizedMonthName()
-        self.number = monthProvider.month
+    }
+}
+
+extension USCalendarMonthModel: Equatable {
+    static func == (lhs: USCalendarMonthModel, rhs: USCalendarMonthModel) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.label == rhs.label &&
+        lhs.number == rhs.number
+    }
+}
+
+extension USCalendarMonthModel: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(label)
+        hasher.combine(number)
     }
 }

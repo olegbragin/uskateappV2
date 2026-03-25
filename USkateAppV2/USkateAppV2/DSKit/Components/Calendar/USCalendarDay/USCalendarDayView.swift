@@ -12,28 +12,30 @@ struct USCalendarDayView: View {
     
     var body: some View {
         ZStack {
-            USCalendarDayEventView(events: model.events)
-                .drawingGroup()
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .aspectRatio(1, contentMode: .fit)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(backgroundColor)
-                )
-                .padding(2)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(borderColor, lineWidth: 0.5)
-                )
+            USCalendarDayEventView(
+                events: model.events.map {
+                    Color($0)
+                }
+            )
+            .drawingGroup()
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .aspectRatio(1, contentMode: .fit)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(backgroundColor)
+            )
+            .padding(2)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(borderColor, lineWidth: 0.5)
+            )
             
             // Текст
             USLabel(model.text)
                 .font(font)
                 .foregroundColor(Color(textColor))
                 .background(.clear)
-                .shadow(radius: 2)
         }
-        .id(model.events.count)
     }
     
     private var textColor: Color {
@@ -49,12 +51,6 @@ struct USCalendarDayView: View {
     
     private var font: Font {
         var font = Font.caption
-        switch model.columnCount {
-        case 3:
-            font = .caption.pointSize(8)
-        default:
-            font = .caption
-        }
         if model.isToday {
             font = font.bold()
         }
@@ -62,7 +58,6 @@ struct USCalendarDayView: View {
     }
     
     private var backgroundColor: Color {
-        guard model.isDayNumber else { return .clear }
         switch (model.isToday, model.isInCurrentMonth) {
         case (true, true), (true, false):
             return Color("colorBackground")
@@ -86,15 +81,12 @@ struct USCalendarDayView: View {
 #Preview {
     USCalendarDayView(
         model: .init(
-            text: "1",
-            columnCount: 2,
-            date: Date(),
-            events: [
-                .black,
-                .green,
-                .orange,
-                .mint
-            ]
+            dto: .init(
+                dateComponents: DateComponents(year: 2024, month: 1, day: 2),
+                number: 2,
+                isInCurrentMonth: true,
+                isToday: true
+            )
         )
     )
 }

@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
+import OrderedCollections
 
 struct USCalendarYearView: View {
     @Bindable var viewModel: USCalendarYearModel
-    @Binding var selectedMonth: Int
-    @Binding var selectedDay: Date?
-    @Binding var isLongPressed: Bool
     
     // Временный масштаб во время жеста (сбрасывается после)
     @GestureState private var tempMagnification: CGFloat = 1.0
@@ -23,19 +21,17 @@ struct USCalendarYearView: View {
                 LazyVGrid(
                     columns: Array(
                         repeating: GridItem(.flexible(), spacing: 12),
-                        count: viewModel.columnCount
+                        count: viewModel.numberOfColumns
                     ),
                     spacing: 32
                 ) {
                     ForEach(viewModel.months.indices, id: \.self) { index in
                         let month = viewModel.months[index]
                         USCalendarMonthView(
-                            model: month,
-                            selectedDay: $selectedDay,
-                            isLongPressed: $isLongPressed
+                            viewModel: month
                         )
-                        .onTapGesture {
-                            selectedMonth = month.number
+                        .onChange(of: month.selectedDays) { oldValue, newValue in
+                            viewModel.selectedDays = newValue
                         }
                         .id(index)
                     }
@@ -50,7 +46,7 @@ struct USCalendarYearView: View {
                     }
                 }
             }
-            .onChange(of: viewModel.columnCount) {
+            .onChange(of: viewModel.numberOfColumns) {
                 if let index = viewModel.indexOfCurrentMonth {
                     DispatchQueue.main.async {
                         proxy.scrollTo(index, anchor: .top)
@@ -75,7 +71,7 @@ struct USCalendarYearView: View {
                         gestureStartTime = nil
                     }
             )
-            .animation(.easeOut(duration: 0.3), value: viewModel.columnCount)
+            .animation(.easeOut(duration: 0.3), value: viewModel.numberOfColumns)
         }
     }
 }

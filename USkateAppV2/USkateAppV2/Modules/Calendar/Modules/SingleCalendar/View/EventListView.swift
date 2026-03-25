@@ -61,7 +61,7 @@ struct EventListView: View {
     
     private func editEventViewModel(for event: EventDataSource) -> AddEditEventViewModel {
         let editEventViewModel = viewModel.addEditEventModel
-        editEventViewModel.selectedDay = viewModel.selectedDay
+        editEventViewModel.selectedDay = viewModel.yearModel.selectedDays.first
         editEventViewModel.eventName = event.name
         editEventViewModel.eventId = event.id
         editEventViewModel.selectedColor = ColorOption(event.color)

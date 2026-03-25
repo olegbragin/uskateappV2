@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct USCalendarWeekHeaderView: View {
-    let model = USCalendarWeekHeaderModel()
+    @Bindable var viewModel: USCalendarWeekHeaderModel
     
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(model.weekHeader) {
-                USCalendarDayView(
-                    model: .init(
-                        text: $0.text,
-                        columnCount: $0.columnCount,
-                        date: $0.date,
-                        isDayNumber: false
-                    )
-                )
+            ForEach(viewModel.weekSymbols, id: \.id) { symbol in
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(.clear)
+                        .aspectRatio(1, contentMode: .fit)
+                        .padding(2)
+                    
+                    USLabel(symbol.name)
+                        .font(.footnote)
+                        .foregroundColor(Color("colorForegroundDisabled"))
+                        .background(.clear)
+                        .shadow(radius: 2)
+                }
             }
         }
-        .id(UUID())
     }
 }
 
 #Preview {
-    USCalendarWeekHeaderView()
+    USCalendarWeekHeaderView(viewModel: .init(weekSymbols: [
+        "S", "T"
+    ]))
 }

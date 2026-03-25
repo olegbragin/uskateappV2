@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct USCalendarMonthView: View {
-    @Bindable var model: USCalendarMonthModel
-    @Binding var selectedDay: Date?
-    @Binding var isLongPressed: Bool
+    @Bindable var viewModel: USCalendarMonthModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(model.label)
-            VStack(alignment: .leading, spacing: 0) {
-                USCalendarWeekHeaderView()
+        LazyVStack(alignment: .leading, spacing: 8) {
+            Text(viewModel.label)
+            LazyVStack(alignment: .leading, spacing: 0) {
+                USCalendarWeekHeaderView(viewModel: .init(weekSymbols: viewModel.weekDaySymbols))
                     .padding(.bottom, 0)
-                ForEach(model.weeks) { week in
+                ForEach(viewModel.weeks) { week in
                     USCalendarWeekView(
-                        model: week,
-                        selectedDay: $selectedDay,
-                        isLongPressed: $isLongPressed
+                        viewModel: week
                     )
+                    .onChange(of: week.selectedDays) { oldValue, newValue in
+                        viewModel.selectedDays = week.selectedDays
+                        // model.selectionMode = week.selectionMode
+                        // model.isLongPressed = week.isLongPressed
+                    }
                 }
             }
         }
@@ -32,8 +33,13 @@ struct USCalendarMonthView: View {
 
 #Preview {
     USCalendarMonthView(
-        model: .init(monthProvider: .init(month: 1, year: 2026), columnCount: 3),
-        selectedDay: .constant(Date()),
-        isLongPressed: .constant(false)
+        viewModel: .init(
+            dto: .init(
+                number: 1,
+                label: "Jan",
+                weekDaySymbols: ["S"],
+                weeks: []
+            )
+        )
     )
 }

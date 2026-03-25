@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct USCalendarWeekView: View {
-    @Bindable var model: USCalendarWeekModel
-    @Binding var selectedDay: Date?
-    @Binding var isLongPressed: Bool
+    @Bindable var viewModel: USCalendarWeekModel
     
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(model.days) { day in
+            ForEach(viewModel.days, id: \.id) { day in
                 USCalendarDayView(
                     model: day
                 )
                 .padding(.bottom, 0)
                 .onTapGesture {
-                    selectedDay = day.date
+                    viewModel.select(day: day.dateComponents?.date)
                 }
                 .onLongPressGesture(
                     minimumDuration: 2.5,
                     pressing: { isPressing in
                         if isPressing {
-                            isLongPressed = true
+                            viewModel.isLongPressed = true
                         }
                     },
                     perform: {}
@@ -38,22 +36,19 @@ struct USCalendarWeekView: View {
 
 #Preview {
     USCalendarWeekView(
-        model: .init(
-            weekNumber: 1,
-            monthNumber: 1,
-            year: 2026,
-            days: [
-                .init(date: Date(), number: 1, isInCurrentMonth: true, isToday: true, events: []),
-                .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: true),
-                .init(date: Date(), number: 1, isInCurrentMonth: true, isToday: false),
-                .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false),
-                .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false),
-                .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false),
-                .init(date: Date(), number: 1, isInCurrentMonth: false, isToday: false)
-            ],
-            columnCount: 2
-        ),
-        selectedDay: .constant(nil),
-        isLongPressed: .constant(false)
+        viewModel: .init(
+            dto: .init(
+                number: 4,
+                days: [
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 44, isInCurrentMonth: true, isToday: false),
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 43, isInCurrentMonth: true, isToday: false),
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 44, isInCurrentMonth: true, isToday: false),
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 43, isInCurrentMonth: true, isToday: false),
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 45, isInCurrentMonth: true, isToday: false),
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 44, isInCurrentMonth: true, isToday: false),
+                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 45, isInCurrentMonth: true, isToday: true),
+                ]
+            )
+        )
     )
 }

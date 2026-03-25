@@ -7,6 +7,5 @@
 
 enum RootSelection: Equatable, Hashable {
     case calendarList
-    case calendarGallery(selectedCalendarId: Int64)
-    case calendarDetails(selectedCalendar: SingleCalendarModel)
+    case calendar(selectedCalendar: SingleCalendarModel)
 }

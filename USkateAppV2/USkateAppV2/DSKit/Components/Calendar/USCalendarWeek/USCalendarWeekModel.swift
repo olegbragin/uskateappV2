@@ -11,25 +11,30 @@ import SwiftUI
 @Observable
 final class USCalendarWeekModel: Identifiable {
     let id = UUID()
-    
-    let weekNumber: Int
-    let monthNumber: Int
-    let year: Int
     let days: [USCalendarDayModel]
     
-    init(weekNumber: Int, monthNumber: Int, year: Int, days: [USCalendarDayDataSource] = [], columnCount: Int) {
-        self.weekNumber = weekNumber
-        self.monthNumber = monthNumber
-        self.year = year
-        self.days = days.map {
-            USCalendarDayModel(
-                text: "\($0.number)",
-                isToday: $0.isToday,
-                isInCurrentMonth: $0.isInCurrentMonth,
-                columnCount: columnCount,
-                date: Calendar.current.date(from: .init(year: year, month: monthNumber, day: $0.number, hour: 23))!,
-                events: $0.events
-            )
+    var selectedDays: Set<Date> = []
+    var selectionMode: USCalendarSelectionMode = .single
+    var isLongPressed: Bool = false
+    
+    init(dto: USCalendarWeekDataSource) {
+        self.days = dto.days.map {
+            USCalendarDayModel(dto: $0)
+        }
+    }
+    
+    func select(day: Date?) {
+        guard let selectedDay = day else { return }
+        switch selectionMode {
+        case .single:
+            selectedDays.removeAll()
+            selectedDays.insert(selectedDay)
+        case .multiple:
+            if !selectedDays.contains(selectedDay) {
+                selectedDays.insert(selectedDay)
+            } else {
+                selectedDays.remove(selectedDay)
+            }
         }
     }
 }

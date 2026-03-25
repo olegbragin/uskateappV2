@@ -6,39 +6,20 @@
 //
 
 import Foundation
+import Observation
 
-struct USCalendarWeekHeaderModel {
-    let calendar: Calendar
-    var weekSymbols = [String]()
-    
-    var weekHeader: [USCalendarDayModel] {
-        return weekSymbols.map {
-            USCalendarDayModel(text: $0, columnCount: 1)
-        }
+@Observable
+final class USCalendarWeekHeaderModel {
+    struct WeekSymbol: Identifiable {
+        let id = UUID()
+        let name: String
     }
     
-    init(calendar: Calendar = .autoupdatingCurrent) {
-        self.calendar = calendar
-        self.weekSymbols = getFirstLettersOfLocalizedWeekdays()
-    }
+    let weekSymbols: [WeekSymbol]
     
-    private func getFirstLettersOfLocalizedWeekdays() -> [String] {
-        // Сдвиг: преобразуем firstWeekday (1–7) в индекс (0–6)
-        let firstWeekDayshift = calendar.firstWeekday - 1
-        
-        // Перестраиваем массив: элементы с `firstWeekDayshift` до конца + элементы с начала до `firstWeekDayshift`
-        let orderedNames = Array(
-            calendar.weekdaySymbols[firstWeekDayshift...] +
-            calendar.weekdaySymbols[..<firstWeekDayshift]
-        )
-        
-        // Извлекаем первую букву каждого названия (заглавную)
-        return orderedNames.map { name in
-            guard
-                !name.isEmpty,
-                let firstScalar = name.unicodeScalars.first
-            else { return "" }
-            return String(firstScalar).uppercased()
+    init(weekSymbols: [String]) {
+        self.weekSymbols = weekSymbols.map {
+            WeekSymbol(name: $0)
         }
     }
 }

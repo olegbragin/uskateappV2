@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 struct USCalendarDayDataSource {
-    let date: Date
+    let dateComponents: DateComponents
     let number: Int
     let isInCurrentMonth: Bool
     let isToday: Bool
     
-    init(date: Date, number: Int, isInCurrentMonth: Bool, isToday: Bool) {
-        self.date = date
+    init(dateComponents: DateComponents, number: Int, isInCurrentMonth: Bool, isToday: Bool) {
+        self.dateComponents = dateComponents
         self.number = number
         self.isInCurrentMonth = isInCurrentMonth
         self.isToday = isToday

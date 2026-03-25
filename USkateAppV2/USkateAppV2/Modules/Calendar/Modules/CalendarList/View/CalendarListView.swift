@@ -34,7 +34,9 @@ struct CalendarListView: View {
                 )
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
-                .tag(RootSelection.calendarGallery(selectedCalendarId: viewModel.calendars[index].id))
+                .tag(
+                    RootSelection.calendar(selectedCalendar: SingleCalendarModel(dto: viewModel.calendars[index]))
+                )
             }
             .onDelete(perform: deleteItems)
         }

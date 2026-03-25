@@ -18,49 +18,37 @@ struct ScrollPositionPreferenceKey: PreferenceKey {
 
 @Observable
 final class USCalendarYearModel {
-    
-    var year: Int = 2026
-    var columnCount: Int = 1
-    var scrollPosition: CGFloat = 0
-    var events: [EventDataSource] = []
-    
     private let baseSensitivity: CGFloat = 0.12
     private let minSensitivity: CGFloat = 0.08
+    private let numberOfCurrentMonth: Int
 
     private var smoothMagnification: CGFloat = 1.0  // Для сглаживания
     private var accumulatedDelta: CGFloat = 0.0  // Накопленная дельта
     private var lastMagnification: CGFloat = 1.0
-    private var lastColumnCount: Int = 1
+    private var lastNumberOfColumns: Int = 1
 
     // Для тактильной отдачи (опционально)
     private let hapticFeedback = UINotificationFeedbackGenerator()
     
+    var numberOfColumns: Int = 1
+    var scrollPosition: CGFloat = 0
+    
+    var selectedDays: Set<Date> = []
+    var selectionMode: USCalendarSelectionMode = .single
+    var isLongPressEnabled: Bool = false
+    
     var indexOfCurrentMonth: Int? {
-        let currentMonth = Calendar.current.component(.month, from: Date())
-        return months.firstIndex { $0.number == currentMonth }
+        return months.firstIndex { $0.number == numberOfCurrentMonth }
     }
 
-    var months: [USCalendarMonthModel] {
-        [
-            .init(monthProvider: .init(month: 1, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 2, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 3, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 4, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 5, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 6, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 7, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 8, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 9, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 10, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 11, year: year, events: events), columnCount: columnCount),
-            .init(monthProvider: .init(month: 12, year: year, events: events), columnCount: columnCount)
-        ]
-    }
+    var months: [USCalendarMonthModel] = []
     
-    init(year: Int, numberOfColumns: Int, events: [EventDataSource] = []) {
-        self.year = year
-        self.columnCount = numberOfColumns
-        self.events = events
+    init(months: [USCalendarMonthDataSource], numberOfCurrentMonth: Int, numberOfColumns: Int = 1) {
+        self.numberOfColumns = numberOfColumns
+        self.numberOfCurrentMonth = numberOfCurrentMonth
+        self.months = months.map {
+            .init(dto: $0)
+        }
     }
     
     /// Обрабатывает жест масштабирования
@@ -98,7 +86,7 @@ final class USCalendarYearModel {
         // 5. Гистерезис: требуется превышение порога в 1.6 раза для срабатывания
         let triggerThreshold = finalThreshold * 1.6
         
-        var newCount = lastColumnCount
+        var newCount = lastNumberOfColumns
         
         if accumulatedDelta > triggerThreshold {
             newCount -= 1
@@ -113,17 +101,17 @@ final class USCalendarYearModel {
         newCount = max(1, min(newCount, 3))
         
         // 7. Обновление состояния только при изменении
-        if newCount != lastColumnCount {
-            columnCount = newCount
-            lastColumnCount = newCount
+        if newCount != lastNumberOfColumns {
+            numberOfColumns = newCount
+            lastNumberOfColumns = newCount
             // Дополнительный визуальный отклик (можно анимировать)
             hapticFeedback.notificationOccurred(.success)
         }
     }
 
     func reset() {
-        columnCount = 2
-        lastColumnCount = 2
+        numberOfColumns = 2
+        lastNumberOfColumns = 2
         lastMagnification = 1.0
         accumulatedDelta = 0.0
     }
