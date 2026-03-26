@@ -27,7 +27,7 @@ final class SingleCalendarModel {
     
     var selectedEvents: [EventDataSource] {
         guard !yearModel.selectedDays.isEmpty else { return [] }
-        return [].filter {
+        return originalEvents.filter {
             yearModel.selectedDays.contains($0.date)
         }
     }

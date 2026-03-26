@@ -13,7 +13,6 @@ struct USCalendarYearView: View {
     
     // Временный масштаб во время жеста (сбрасывается после)
     @GestureState private var tempMagnification: CGFloat = 1.0
-    @State private var gestureStartTime: Date?
     
     var body: some View {
         ScrollViewReader { proxy in
@@ -75,22 +74,10 @@ struct USCalendarYearView: View {
                 }
             }
             .highPriorityGesture(
-                MagnifyGesture()
-                    .updating($tempMagnification) { value, state, _ in
-                        state = value.magnification
-                        if gestureStartTime == nil {
-                            gestureStartTime = Date()
-                        }
-                    }
-                    .onEnded { value in
-                        let duration = Date().timeIntervalSince(gestureStartTime ?? Date())
-                        viewModel.handleMagnify(
-                            magnification: value.magnification,
-                            velocity: value.velocity,
-                            gestureDuration: duration
-                        )
-                        gestureStartTime = nil
-                    }
+                USCalendarPinchToZoomGesture(
+                    tempMagnification: $tempMagnification,
+                    numberOfColumns: $viewModel.numberOfColumns
+                )
             )
             .animation(.easeOut(duration: 0.3), value: viewModel.numberOfColumns)
         }

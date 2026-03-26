@@ -80,7 +80,11 @@ struct SingleCalendarView: View {
         }
         .sheet(isPresented: $isEditSheetPresented) {
             if viewModel.yearModel.selectionMode == .single {
-                EventListView(viewModel: viewModel)
+                if !viewModel.selectedEvents.isEmpty {
+                    EventListView(viewModel: viewModel)
+                } else {
+                    AddEditEventView(viewModel: viewModel.addEditEventModel)
+                }
             }
         }
     }
