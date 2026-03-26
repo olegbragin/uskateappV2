@@ -71,11 +71,9 @@ final class USCalendarYearModel {
         
         let effectiveMagnification = smoothMagnification
         
-        
         // 2. Вычисляем дельту относительно предыдущего сглаженного значения
         let delta = effectiveMagnification - lastMagnification
         lastMagnification = effectiveMagnification
-        
         
         // 3. Адаптивный порог в зависимости от скорости и длительности жеста
         let speedInfluence = min(abs(velocity) / 300.0, 0.8)  // Нормализация скорости
@@ -83,10 +81,8 @@ final class USCalendarYearModel {
         let dynamicThreshold = baseSensitivity * (1.0 - speedInfluence * 0.7 - durationInfluence * 0.3)
         let finalThreshold = max(minSensitivity, dynamicThreshold)  // Минимум — minSensitivity
         
-        
         // 4. Накопление дельты с экспоненциальным затуханием и усилением текущего движения
         accumulatedDelta = accumulatedDelta * 0.65 + delta * 1.5
-        
         
         // 5. Гистерезис: требуется превышение порога в 1.6 раза для срабатывания
         let triggerThreshold = finalThreshold * 1.6

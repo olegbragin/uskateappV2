@@ -13,7 +13,7 @@ final class USCalendarDayModel: Identifiable {
     let text: String
     let isToday: Bool
     let isInCurrentMonth: Bool
-    let dateComponents: DateComponents?
+    let date: Date?
     
     var events: [String] = []
     
@@ -21,6 +21,6 @@ final class USCalendarDayModel: Identifiable {
         self.text = "\(dto.number)"
         self.isToday = dto.isToday
         self.isInCurrentMonth = dto.isInCurrentMonth
-        self.dateComponents = dto.dateComponents
+        self.date = dto.date
     }
 }

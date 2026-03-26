@@ -21,23 +21,26 @@ struct USCalendarWeekView: View {
                 )
                 .padding(.bottom, 0)
                 .onTapGesture {
-                    viewModel.select(day: day.dateComponents?.date)
+                    viewModel.select(day: day)
                 }
-                .onLongPressGesture(
-                    minimumDuration: 3.5,
-                    pressing: { isPressing in
-                        if isPressing {
+                .simultaneousGesture(
+                    LongPressGesture()
+                        .onEnded { _ in
                             viewModel.selectionMode = .multiple
                             hapticFeedback.notificationOccurred(.success)
-                        }
-                    },
-                    perform: {}
+                        },
+                    isEnabled: viewModel.selectionMode == .single
                 )
             }
         }
         .onChange(of: viewModel.selectionMode) { oldValue, newValue in
             if oldValue != newValue, newValue == .multiple {
                 hapticFeedback.notificationOccurred(.success)
+            }
+        }
+        .onChange(of: viewModel.selectedDays) { oldValue, newValue in
+            if oldValue != newValue {
+                viewModel.selectedDays = newValue
             }
         }
     }
@@ -49,13 +52,13 @@ struct USCalendarWeekView: View {
             dto: .init(
                 number: 4,
                 days: [
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 44, isInCurrentMonth: true, isToday: false),
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 43, isInCurrentMonth: true, isToday: false),
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 44, isInCurrentMonth: true, isToday: false),
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 43, isInCurrentMonth: true, isToday: false),
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 45, isInCurrentMonth: true, isToday: false),
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 44, isInCurrentMonth: true, isToday: false),
-                    .init(dateComponents: DateComponents(year: 2024, month: 1, day: 1), number: 45, isInCurrentMonth: true, isToday: true),
+                    .init(date: Date(), number: 44, isInCurrentMonth: true, isToday: false),
+                    .init(date: Date(), number: 43, isInCurrentMonth: true, isToday: false),
+                    .init(date: Date(), number: 44, isInCurrentMonth: true, isToday: false),
+                    .init(date: Date(), number: 43, isInCurrentMonth: true, isToday: false),
+                    .init(date: Date(), number: 45, isInCurrentMonth: true, isToday: false),
+                    .init(date: Date(), number: 44, isInCurrentMonth: true, isToday: false),
+                    .init(date: Date(), number: 45, isInCurrentMonth: true, isToday: true),
                 ]
             )
         )

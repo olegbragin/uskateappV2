@@ -8,7 +8,7 @@
 import Foundation
 
 struct USCalendarDataProvider {
-    private let calendar: Calendar
+    private var calendar: Calendar
     
     var numberOfCurrentMonth: Int {
         calendar.component(.month, from: Date())
@@ -18,6 +18,8 @@ struct USCalendarDataProvider {
         calendar: Calendar = .autoupdatingCurrent
     ) {
         self.calendar = calendar
+        self.calendar.timeZone = .current
+        self.calendar.locale = .current
     }
     
     func months(forYear year: Int) -> [USCalendarMonthDataSource] {
@@ -87,15 +89,14 @@ struct USCalendarDataProvider {
             }
             
             // Преобразуем дату в Day
-            let dateComponents = calendar.dateComponents(in: calendar.timeZone, from: date)
-            let dayNumberOfDate = dateComponents.day ?? calendar.component(.day, from: date)
-            let monthOfDate = dateComponents.month ?? calendar.component(.month, from: date)
-            let yearOfDate = dateComponents.year ?? calendar.component(.year, from: date)
+            let dayNumberOfDate = calendar.component(.day, from: date)
+            let monthOfDate = calendar.component(.month, from: date)
+            let yearOfDate = calendar.component(.year, from: date)
             let isInMonth = (month == monthOfDate) && (year == yearOfDate)
             
             currentWeek.append(
                 USCalendarDayDataSource(
-                    dateComponents: dateComponents,
+                    date: date,
                     number: dayNumberOfDate,
                     isInCurrentMonth: isInMonth,
                     isToday: calendar.isDate(date, inSameDayAs: todayDate) && isInMonth
@@ -116,7 +117,7 @@ struct USCalendarDataProvider {
         // 6. Если недель меньше 6 — дополняем следующими неделями
         while weeks.count < 6 {
             // Берём последний день последней недели
-            guard let lastDate = weeks.last?.days.last?.dateComponents.date else { break }
+            guard let lastDate = weeks.last?.days.last?.date else { break }
             
             // Генерируем следующую неделю (7 дней после lastDate)
             var nextWeekDates: [Date] = []
@@ -129,13 +130,12 @@ struct USCalendarDataProvider {
             
             // Преобразуем даты в Day
             let nextWeekDays = nextWeekDates.map { date in
-                let dateComponents = calendar.dateComponents(in: calendar.timeZone, from: date)
-                let dayNumberOfDate = dateComponents.day ?? calendar.component(.day, from: date)
-                let monthOfDate = dateComponents.month ?? calendar.component(.month, from: date)
-                let yearOfDate = dateComponents.year ?? calendar.component(.year, from: date)
+                let dayNumberOfDate = calendar.component(.day, from: date)
+                let monthOfDate = calendar.component(.month, from: date)
+                let yearOfDate = calendar.component(.year, from: date)
                 let isInMonth = (month == monthOfDate) && (year == yearOfDate)
                 return USCalendarDayDataSource(
-                    dateComponents: dateComponents,
+                    date: date,
                     number: dayNumberOfDate,
                     isInCurrentMonth: isInMonth,
                     isToday: calendar.isDate(date, inSameDayAs: todayDate) && isInMonth

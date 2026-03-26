@@ -11,7 +11,7 @@ import Observation
 final class CalendarListViewModel {
     private var manager: CalendarManager
     
-    var calendars: [CalendarDataSource] = []
+    var calendars: [SingleCalendarModel] = []
     
     var addEditCalendarViewModel = AddEditCalendarViewModel()
     var isAddEditSheetPresented = false
@@ -21,13 +21,15 @@ final class CalendarListViewModel {
     }
     
     func fetch() async throws {
-        self.calendars = try await manager.getAllCalendars()
+        self.calendars = try await manager.getAllCalendars().map {
+            SingleCalendarModel(dto: $0)
+        }
     }
     
     func save() {
         self.calendars.forEach { calendar in
             Task {
-                try? await self.manager.updateCalendar(calendar)
+                try? await self.manager.updateCalendar(calendar.selectedCalendar)
             }
         }
     }
@@ -36,7 +38,7 @@ final class CalendarListViewModel {
         Task {
             let newCalendar = try await manager.createCalendar(name: name, year: 2026, numberOfColumns: 3)
             await MainActor.run {
-                self.calendars.append(newCalendar)
+                self.calendars.append(SingleCalendarModel(dto: newCalendar))
             }
         }
     }
@@ -46,7 +48,7 @@ final class CalendarListViewModel {
             try await manager.deleteCalendar(calendar.id)
             await MainActor.run {
                 self.calendars.removeAll {
-                    $0.id == calendar.id
+                    $0.selectedCalendar.id == calendar.id
                 }
             }
         }

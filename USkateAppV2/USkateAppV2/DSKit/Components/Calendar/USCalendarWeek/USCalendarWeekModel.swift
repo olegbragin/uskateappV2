@@ -23,8 +23,11 @@ final class USCalendarWeekModel: Identifiable {
         }
     }
     
-    func select(day: Date?) {
-        guard let selectedDay = day else { return }
+    func select(day: USCalendarDayModel) {
+        guard
+            day.isInCurrentMonth,
+            let selectedDay = day.date
+        else { return }
         switch selectionMode {
         case .single:
             selectedDays.removeAll()

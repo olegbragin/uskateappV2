@@ -31,10 +31,7 @@ class ObjectBoxCalendarStorage: CalendarStorage {
                     id: UInt64(calendar.id),
                     name: calendar.name,
                     year: calendar.year,
-                    numberOfColumns: calendar.numberOfColumns,
-                    events: calendar.events.map {
-                        .init(name: $0.name, color: $0.color, date: $0.date)
-                    }
+                    numberOfColumns: calendar.numberOfColumns
                 )
             )
         )

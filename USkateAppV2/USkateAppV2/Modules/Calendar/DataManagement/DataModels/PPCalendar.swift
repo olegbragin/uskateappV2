@@ -22,8 +22,7 @@ class PPCalendar: Entity {
         id: Id = 0,
         name: String,
         year: Int,
-        numberOfColumns: Int,
-        events: [PPEvent] = []
+        numberOfColumns: Int
     ) {
         if id > 0 {
             self.id = id
@@ -31,6 +30,5 @@ class PPCalendar: Entity {
         self.name = name
         self.year = year
         self.numberOfColumns = numberOfColumns
-        self.events = .init(events)
     }
 }

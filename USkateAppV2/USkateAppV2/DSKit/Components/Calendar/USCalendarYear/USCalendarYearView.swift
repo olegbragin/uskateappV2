@@ -67,6 +67,13 @@ struct USCalendarYearView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.selectedDays) { oldValue, newValue in
+                if oldValue != newValue {
+                    viewModel.months.forEach {
+                        $0.selectedDays = newValue
+                    }
+                }
+            }
             .highPriorityGesture(
                 MagnifyGesture()
                     .updating($tempMagnification) { value, state, _ in

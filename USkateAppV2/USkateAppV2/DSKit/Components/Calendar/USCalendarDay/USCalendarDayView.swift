@@ -82,7 +82,7 @@ struct USCalendarDayView: View {
     USCalendarDayView(
         model: .init(
             dto: .init(
-                dateComponents: DateComponents(year: 2024, month: 1, day: 2),
+                date: Date(),
                 number: 2,
                 isInCurrentMonth: true,
                 isToday: true

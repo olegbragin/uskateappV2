@@ -16,7 +16,7 @@ final class SingleCalendarModel {
     private var originalEvents: [EventDataSource] = []
     private var changedEvents: Set<EventDataSource> = []
     
-    let id: Int64
+    var selectedCalendar: CalendarDataSource
     
     var label: String = ""
     var selectedColor: ColorOption?
@@ -33,7 +33,7 @@ final class SingleCalendarModel {
     }
     
     init(dto: CalendarDataSource) {
-        id = dto.id
+        selectedCalendar = dto
         label = dto.name
         yearModel = .init(
             months: dataProvider.months(forYear: dto.year),
@@ -43,6 +43,64 @@ final class SingleCalendarModel {
         addEditEventModel = AddEditEventViewModel()
         legendViewModel = SingleCalendarSummaryModel(year: dto.year, events: Self.group(events: dto.events))
         
+        originalEvents = dto.events
+        updateYearModel(with: originalEvents)
+    }
+    
+    func addEvent(id: Int64, name: String, date: Date, color: String) async throws {
+        let newEvent = EventDataSource(id: id, name: name, date: date, color: color)
+        try await manager.addEditEvent(newEvent, calendarId: self.selectedCalendar.id)
+    }
+    
+    func removeEvents(ids: [Int64]) async throws {
+        try await manager.removeEvents(ids, calendarId: self.selectedCalendar.id)
+        // yearModel.events.removeAll(where: { ids.contains($0.id) })
+    }
+    
+    func changeEvent(_ event: EventDataSource) {
+        if changedEvents.contains(event) {
+            changedEvents.remove(at: changedEvents.firstIndex(of: event)!)
+        } else {
+            changedEvents.insert(event)
+        }
+        updateYearModel(with: originalEvents + changedEvents)
+        yearModel.selectedDays = []
+    }
+    
+    func saveCalendar() {
+        Task {
+            guard var persistedCalendar = try? await self.manager.getCalendar(id: self.selectedCalendar.id) else { return }
+            persistedCalendar.numberOfColumns = yearModel.numberOfColumns
+            try? await manager.updateCalendar(persistedCalendar)
+        }
+    }
+    
+    func commitMultipleChanges() {
+        let allEvents = originalEvents + changedEvents
+        selectedCalendar.events = allEvents
+        originalEvents = selectedCalendar.events
+        
+        updateYearModel(with: allEvents)
+        changedEvents.forEach { event in
+            Task {
+                try await addEvent(id: event.id, name: event.name, date: event.date, color: event.color)
+            }
+        }
+        yearModel.toggleSelectionMode()
+        changedEvents = []
+    }
+    
+    func cancelMultipleChanges() {
+        updateYearModel(with: originalEvents)
+        yearModel.toggleSelectionMode()
+        changedEvents = []
+    }
+    
+    func cancel() {
+        yearModel.selectedDays = []
+    }
+    
+    private func updateYearModel(with events: [EventDataSource]) {
         yearModel.months.forEach { month in
             month.weeks.forEach { week in
                 week.days
@@ -50,12 +108,14 @@ final class SingleCalendarModel {
                         day.isInCurrentMonth
                     }
                     .forEach { day in
-                        let dayEvents = dto.events.filter {
-                            let eventDate = dataProvider.dateComponents(forDate: $0.date)
+                        let dayEvents = events.filter {
+                            guard let dayDate = day.date else { return false }
+                            let eventDateComponents = dataProvider.dateComponents(forDate: $0.date)
+                            let dayComponents = dataProvider.dateComponents(forDate: dayDate)
                             return
-                                day.dateComponents?.day == eventDate.day &&
-                                day.dateComponents?.month == eventDate.month &&
-                                day.dateComponents?.year == eventDate.year
+                                dayComponents.day == eventDateComponents.day &&
+                                dayComponents.month == eventDateComponents.month &&
+                                dayComponents.year == eventDateComponents.year
                         }
                         day.events = dayEvents.map {
                             $0.color
@@ -63,54 +123,6 @@ final class SingleCalendarModel {
                     }
             }
         }
-    }
-    
-    func addEvent(id: Int64, name: String, date: Date, color: String) async throws {
-        let newEvent = EventDataSource(id: id, name: name, date: date, color: color)
-        try await manager.addEditEvent(newEvent, calendarId: self.id)
-    }
-    
-    func removeEvents(ids: [Int64]) async throws {
-        try await manager.removeEvents(ids, calendarId: self.id)
-        // yearModel.events.removeAll(where: { ids.contains($0.id) })
-    }
-    
-    func changeEvent(_ event: EventDataSource) {
-//        if changedEvents.contains(event) {
-//            changedEvents.remove(at: changedEvents.firstIndex(of: event)!)
-//        } else {
-//            changedEvents.insert(event)
-//        }
-//        yearModel.events = originalEvents + changedEvents
-//        yearModel.selectedDays = []
-    }
-    
-    func saveCalendar() {
-        Task {
-            guard var persistedCalendar = try? await self.manager.getCalendar(id: self.id) else { return }
-            persistedCalendar.numberOfColumns = yearModel.numberOfColumns
-            try? await manager.updateCalendar(persistedCalendar)
-        }
-    }
-    
-    func commitMultipleChanges() {
-        changedEvents.forEach { event in
-            Task {
-                try await addEvent(id: event.id, name: event.name, date: event.date, color: event.color)
-            }
-        }
-        changedEvents = []
-        yearModel.toggleSelectionMode()
-    }
-    
-    func cancelMultipleChanges() {
-        changedEvents = []
-        // yearModel.events = originalEvents
-        yearModel.toggleSelectionMode()
-    }
-    
-    func cancel() {
-        yearModel.selectedDays = []
     }
     
     private static func group(events: [EventDataSource]) -> [SummaryEventModel] {
@@ -133,12 +145,12 @@ final class SingleCalendarModel {
 
 extension SingleCalendarModel: Equatable {
     static func == (lhs: SingleCalendarModel, rhs: SingleCalendarModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.selectedCalendar.id == rhs.selectedCalendar.id
     }
 }
 
 extension SingleCalendarModel: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(selectedCalendar.id)
     }
 }

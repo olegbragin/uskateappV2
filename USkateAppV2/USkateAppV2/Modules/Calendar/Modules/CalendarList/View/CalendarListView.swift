@@ -19,10 +19,10 @@ struct CalendarListView: View {
                 HStack {
                     Image(systemName: "calendar")
                     if editMode?.wrappedValue == .active {
-                        TextField("Введите название календаря", text: $viewModel.calendars[index].name)
+                        TextField("Введите название календаря", text: $viewModel.calendars[index].selectedCalendar.name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     } else {
-                        Text(viewModel.calendars[index].name)
+                        Text(viewModel.calendars[index].selectedCalendar.name)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -35,7 +35,7 @@ struct CalendarListView: View {
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
                 .tag(
-                    RootSelection.calendar(selectedCalendar: SingleCalendarModel(dto: viewModel.calendars[index]))
+                    RootSelection.calendar(selectedCalendar: viewModel.calendars[index])
                 )
             }
             .onDelete(perform: deleteItems)
@@ -59,15 +59,17 @@ struct CalendarListView: View {
                 }
             }
         }
-        .task {
-            try? await viewModel.fetch()
+        .onAppear {
+            Task {
+                try? await viewModel.fetch()
+            }
         }
         .refreshable {
             try? await viewModel.fetch()
         }
         .onChange(of: viewModel.addEditCalendarViewModel.calendar) {
-            if $0 != $1, let candlear = $1 {
-                viewModel.addCalendar(with: candlear.name)
+            if $0 != $1, let calendar = $1 {
+                viewModel.addCalendar(with: calendar.name)
             }
         }
         .sheet(isPresented: $viewModel.isAddEditSheetPresented) {
@@ -82,7 +84,7 @@ struct CalendarListView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                viewModel.removeCalendar(viewModel.calendars[index])
+                viewModel.removeCalendar(viewModel.calendars[index].selectedCalendar)
             }
         }
     }
