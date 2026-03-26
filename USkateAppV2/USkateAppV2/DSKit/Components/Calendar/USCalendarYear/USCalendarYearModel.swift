@@ -8,14 +8,6 @@
 import Combine
 import SwiftUI
 
-struct ScrollPositionPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
-
 @Observable
 final class USCalendarYearModel {
     private let numberOfCurrentMonth: Int

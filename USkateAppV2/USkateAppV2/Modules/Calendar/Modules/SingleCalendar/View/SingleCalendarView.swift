@@ -87,5 +87,10 @@ struct SingleCalendarView: View {
                 }
             }
         }
+        .onChange(of: isEditSheetPresented) { oldValue, newValue in
+            if oldValue != newValue, !newValue {
+                viewModel.yearModel.selectedDays = []
+            }
+        }
     }
 }

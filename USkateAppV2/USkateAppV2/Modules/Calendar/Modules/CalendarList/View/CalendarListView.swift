@@ -43,6 +43,11 @@ struct CalendarListView: View {
         .listStyle(.insetGrouped)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
+                USEditButton {
+                    if editMode?.wrappedValue == .inactive {
+                        viewModel.save()
+                    }
+                }
                 if editMode?.wrappedValue == .active {
                     Button("Save", systemImage: "checkmark") {
                         viewModel.save()
@@ -52,6 +57,7 @@ struct CalendarListView: View {
                 Button("Edit") {
                     editMode?.wrappedValue = editMode?.wrappedValue == .active ? .inactive : .active
                 }
+                
             }
             ToolbarItem {
                 Button(action: addItem) {

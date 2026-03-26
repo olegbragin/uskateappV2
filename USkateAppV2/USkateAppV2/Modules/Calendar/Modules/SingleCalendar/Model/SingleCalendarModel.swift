@@ -96,10 +96,6 @@ final class SingleCalendarModel {
         changedEvents = []
     }
     
-    func cancel() {
-        yearModel.selectedDays = []
-    }
-    
     private func updateYearModel(with events: [EventDataSource]) {
         yearModel.months.forEach { month in
             month.weeks.forEach { week in

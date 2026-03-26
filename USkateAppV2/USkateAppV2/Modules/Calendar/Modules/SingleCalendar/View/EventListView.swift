@@ -23,18 +23,14 @@ struct EventListView: View {
                                 .presentationDetents([.large])
                         ) {
                             Text(event.name)
-                                .background(Color(event.color))
                         }
+                        .listRowBackground(Color(event.color))
                     }
                     .onDelete(perform: deleteItems)
                 }
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Отмена") {
-                            viewModel.cancel()
-                        }
-                    }
-                    ToolbarItemGroup(placement: .confirmationAction) {
+                    ToolbarItem(placement: .topBarLeading) {
                         NavigationLink(
                             destination:
                                 AddEditEventView(viewModel: viewModel.addEditEventModel)
@@ -42,7 +38,12 @@ struct EventListView: View {
                         ) {
                             Image(systemName: "plus")
                         }
-                        EditButton()
+                    }
+                    ToolbarItem(placement: .title) {
+                        Text(viewModel.yearModel.selectedDays.first ?? Date(), style: .date)
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        USEditButton()
                     }
                 }
             }
