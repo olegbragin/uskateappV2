@@ -5,39 +5,45 @@
 //  Created by Oleg Bragin on 26.03.2026.
 //
 
+import Foundation
 import SwiftUI
 
 struct USEditButton: View {
-    @Environment(\.editMode) private var editMode
-    @State private var isEditing: Bool = false
-    
-    private let action: () -> Void
-    
-    init(action: @escaping () -> Void = {}) {
+    @Binding var isEditing: Bool
+    private let action: (Bool) -> Void
+    private let activeContent: () -> AnyView
+    private let inactiveContent: () -> AnyView
+
+    init(
+        isEditing: Binding<Bool>,
+        action: @escaping (Bool) -> Void = { _ in },
+        @ViewBuilder activeContent: @escaping () -> AnyView = {
+            AnyView(Image(systemName: "checkmark"))
+        },
+        @ViewBuilder inactiveContent: @escaping () -> AnyView = {
+            AnyView(Text("Edit"))
+        }
+    ) {
+        self._isEditing = isEditing
         self.action = action
+        self.activeContent = activeContent
+        self.inactiveContent = inactiveContent
     }
-    
+
     var body: some View {
         Button {
-            isEditing.toggle()
-            editMode?.wrappedValue = isEditing ? .active : .inactive
-            action()
+            action(isEditing)
         } label: {
             if isEditing {
-                Image(systemName: "checkmark")
+                activeContent()
             } else {
-                Text("Edit")
+                inactiveContent()
             }
-        }
-        .padding([.trailing])
-        .buttonStyle(PlainButtonStyle())
-        .animation(.easeInOut(duration: 0.25), value: isEditing)
-        .onChange(of: editMode?.wrappedValue) { _, newValue in
-            isEditing = newValue == .active
         }
     }
 }
 
 #Preview {
-    USEditButton()
+    USEditButton(isEditing: .constant(true))
+    USEditButton(isEditing: .constant(false))
 }

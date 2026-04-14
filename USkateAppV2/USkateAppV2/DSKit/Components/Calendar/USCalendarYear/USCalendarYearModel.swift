@@ -10,12 +10,12 @@ import SwiftUI
 
 @Observable
 final class USCalendarYearModel {
-    private let numberOfCurrentMonth: Int
     
     // Для тактильной отдачи (опционально)
     private let hapticFeedback = UINotificationFeedbackGenerator()
     
     var numberOfColumns: Int = 1
+    var numberOfCurrentMonth: Int = 1
     var scrollPosition: CGFloat = 0
     
     var selectedDays: Set<Date> = []

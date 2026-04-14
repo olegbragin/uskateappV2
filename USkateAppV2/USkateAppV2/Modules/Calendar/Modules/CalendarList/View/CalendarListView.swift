@@ -18,11 +18,11 @@ struct CalendarListView: View {
             ForEach(viewModel.calendars.indices, id: \.self) { index in
                 HStack {
                     Image(systemName: "calendar")
-                    if editMode?.wrappedValue == .active {
-                        TextField("Введите название календаря", text: $viewModel.calendars[index].selectedCalendar.name)
+                    if viewModel.isEditing {
+                        TextField("Введите название календаря", text: $viewModel.calendars[index].name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     } else {
-                        Text(viewModel.calendars[index].selectedCalendar.name)
+                        Text(viewModel.calendars[index].name)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -35,7 +35,7 @@ struct CalendarListView: View {
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
                 .tag(
-                    RootSelection.calendar(selectedCalendar: viewModel.calendars[index])
+                    RootSelection.calendar(id: viewModel.calendars[index].id)
                 )
             }
             .onDelete(perform: deleteItems)
@@ -43,32 +43,27 @@ struct CalendarListView: View {
         .listStyle(.insetGrouped)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                USEditButton {
-                    if editMode?.wrappedValue == .inactive {
+                USEditButton(isEditing: $viewModel.isEditing) { isEditing in
+                    if isEditing {
                         viewModel.save()
+                    } else {
+                        viewModel.isEditing.toggle()
                     }
                 }
-                if editMode?.wrappedValue == .active {
+                if viewModel.isEditing {
                     Button("Save", systemImage: "checkmark") {
                         viewModel.save()
-                        editMode?.wrappedValue = editMode?.wrappedValue == .active ? .inactive : .active
                     }
                 }
-                Button("Edit") {
-                    editMode?.wrappedValue = editMode?.wrappedValue == .active ? .inactive : .active
-                }
-                
             }
             ToolbarItem {
-                Button(action: addItem) {
+                Button(action: viewModel.addItem) {
                     Label("Add Item", systemImage: "plus")
                 }
             }
         }
-        .onAppear {
-            Task {
-                try? await viewModel.fetch()
-            }
+        .task {
+            try? await viewModel.fetch()
         }
         .refreshable {
             try? await viewModel.fetch()
@@ -78,19 +73,20 @@ struct CalendarListView: View {
                 viewModel.addCalendar(with: calendar.name)
             }
         }
+        .onChange(of: viewModel.isEditing) {
+            if $0 != $1 {
+                editMode?.wrappedValue = $1 ? .active : .inactive
+            }
+        }
         .sheet(isPresented: $viewModel.isAddEditSheetPresented) {
             AddEditCalendarView(viewModel: viewModel.addEditCalendarViewModel)
         }
-    }
-    
-    private func addItem() {
-        viewModel.isAddEditSheetPresented = true
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                viewModel.removeCalendar(viewModel.calendars[index].selectedCalendar)
+                viewModel.removeCalendar(viewModel.calendars[index])
             }
         }
     }

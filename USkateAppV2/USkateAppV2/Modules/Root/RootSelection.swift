@@ -7,5 +7,5 @@
 
 enum RootSelection: Equatable, Hashable {
     case calendarList
-    case calendar(selectedCalendar: SingleCalendarModel)
+    case calendar(id: Int64)
 }

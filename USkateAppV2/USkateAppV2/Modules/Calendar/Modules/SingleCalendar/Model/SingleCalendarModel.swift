@@ -11,19 +11,27 @@ import SwiftUI
 
 @Observable
 final class SingleCalendarModel {
+    enum Action {
+        case change
+        case delete
+    }
+    
     private let dataProvider = USCalendarDataProvider()
     private let manager = CalendarManager()
-    private var originalEvents: [EventDataSource] = []
-    private var changedEvents: Set<EventDataSource> = []
+    private var originalEvents: Set<EventDataSource> = []
+    private var addedEvents: Set<EventDataSource> = []
     
-    var selectedCalendar: CalendarDataSource
-    
+    let calendarId: Int64
     var label: String = ""
     var selectedColor: ColorOption?
     
-    var yearModel: USCalendarYearModel
-    var addEditEventModel: AddEditEventViewModel
-    var legendViewModel: SingleCalendarSummaryModel
+    var yearModel = USCalendarYearModel(months: [], numberOfCurrentMonth: 1)
+    var legendViewModel = SingleCalendarSummaryModel(year: 2026, events: [])
+    var editListViewModel = EventListViewModel()
+    
+    var isLoading = true
+    var isEditSheetPresented = false
+    var isLegendSheetPresented = false
     
     var selectedEvents: [EventDataSource] {
         guard !yearModel.selectedDays.isEmpty else { return [] }
@@ -32,71 +40,103 @@ final class SingleCalendarModel {
         }
     }
     
-    init(dto: CalendarDataSource) {
-        selectedCalendar = dto
-        label = dto.name
-        yearModel = .init(
-            months: dataProvider.months(forYear: dto.year),
-            numberOfCurrentMonth: dataProvider.numberOfCurrentMonth,
-            numberOfColumns: dto.numberOfColumns
-        )
-        addEditEventModel = AddEditEventViewModel()
-        legendViewModel = SingleCalendarSummaryModel(year: dto.year, events: Self.group(events: dto.events))
-        
-        originalEvents = dto.events
-        updateYearModel(with: originalEvents)
-    }
-    
-    func addEvent(id: Int64, name: String, date: Date, color: String) async throws {
-        let newEvent = EventDataSource(id: id, name: name, date: date, color: color)
-        try await manager.addEditEvent(newEvent, calendarId: self.selectedCalendar.id)
-    }
-    
-    func removeEvents(ids: [Int64]) async throws {
-        try await manager.removeEvents(ids, calendarId: self.selectedCalendar.id)
-        // yearModel.events.removeAll(where: { ids.contains($0.id) })
+    init(calendarId: Int64) {
+        self.calendarId = calendarId
     }
     
     func changeEvent(_ event: EventDataSource) {
-        if changedEvents.contains(event) {
-            changedEvents.remove(at: changedEvents.firstIndex(of: event)!)
+        if addedEvents.contains(event) {
+            addedEvents.remove(at: addedEvents.firstIndex(of: event)!)
         } else {
-            changedEvents.insert(event)
+            addedEvents.insert(event)
         }
-        updateYearModel(with: originalEvents + changedEvents)
+        updateYearModel(with: originalEvents.union(addedEvents))
         yearModel.selectedDays = []
+    }
+    
+    func fetch() async throws {
+        isLoading = true
+        guard let calendar = try await self.manager.getCalendar(id: calendarId) else {
+            isLoading = false
+            return
+        }
+        label = calendar.name
+        yearModel.months = dataProvider.months(forYear: calendar.year).map {
+            USCalendarMonthModel(dto: $0)
+        }
+        yearModel.numberOfCurrentMonth = dataProvider.numberOfCurrentMonth
+        yearModel.numberOfColumns = calendar.numberOfColumns
+        
+        legendViewModel.year = calendar.year
+        legendViewModel.events = Self.group(events: calendar.events)
+        
+        originalEvents = Set(calendar.events)
+        updateYearModel(with: originalEvents)
+        isLoading = false
     }
     
     func saveCalendar() {
         Task {
-            guard var persistedCalendar = try? await self.manager.getCalendar(id: self.selectedCalendar.id) else { return }
+            guard var persistedCalendar = try? await self.manager.getCalendar(id: self.calendarId) else { return }
             persistedCalendar.numberOfColumns = yearModel.numberOfColumns
+            persistedCalendar.events = Array(originalEvents)
             try? await manager.updateCalendar(persistedCalendar)
         }
     }
     
     func commitMultipleChanges() {
-        let allEvents = originalEvents + changedEvents
-        selectedCalendar.events = allEvents
-        originalEvents = selectedCalendar.events
+        let allEvents = originalEvents.union(addedEvents)
+        originalEvents = allEvents
         
         updateYearModel(with: allEvents)
-        changedEvents.forEach { event in
-            Task {
-                try await addEvent(id: event.id, name: event.name, date: event.date, color: event.color)
-            }
-        }
         yearModel.toggleSelectionMode()
-        changedEvents = []
+        addedEvents = []
+        saveCalendar()
     }
     
     func cancelMultipleChanges() {
         updateYearModel(with: originalEvents)
         yearModel.toggleSelectionMode()
-        changedEvents = []
+        addedEvents = []
     }
     
-    private func updateYearModel(with events: [EventDataSource]) {
+    func prepareEditListViewModel(with selectedDays: Set<Date>) {
+        editListViewModel.prepare(with: selectedEvents, and: selectedDays.first)
+        isEditSheetPresented = selectedDays.first != nil
+    }
+    
+    func apply(events: [EventDataSource], action: Action) {
+        switch action {
+        case .change:
+            let newEvents = mergeSetsByID(originalEvents, with: Set(events))
+            originalEvents = newEvents
+            updateYearModel(with: originalEvents)
+        case .delete:
+            events.forEach {
+                originalEvents.remove($0)
+            }
+            updateYearModel(with: originalEvents)
+        }
+        saveCalendar()
+    }
+    
+    private func mergeSetsByID<T: Hashable & Identifiable>(
+        _ originalSet: Set<T>,
+        with updates: Set<T>
+    ) -> Set<T> {
+        // Шаг 1: преобразуем исходный набор в словарь по ID
+        var dictionary = Dictionary(uniqueKeysWithValues: originalSet.map { ($0.id, $0) })
+
+        // Шаг 2: обновляем словарь объектами из updates — дубли по ID перезапишутся
+        updates.forEach { user in
+            dictionary[user.id] = user
+        }
+
+        // Шаг 3: возвращаем новый Set
+        return Set(dictionary.values)
+    }
+    
+    private func updateYearModel(with events: Set<EventDataSource>) {
         yearModel.months.forEach { month in
             month.weeks.forEach { week in
                 week.days
@@ -141,12 +181,12 @@ final class SingleCalendarModel {
 
 extension SingleCalendarModel: Equatable {
     static func == (lhs: SingleCalendarModel, rhs: SingleCalendarModel) -> Bool {
-        lhs.selectedCalendar.id == rhs.selectedCalendar.id
+        lhs.calendarId == rhs.calendarId
     }
 }
 
 extension SingleCalendarModel: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(selectedCalendar.id)
+        hasher.combine(calendarId)
     }
 }

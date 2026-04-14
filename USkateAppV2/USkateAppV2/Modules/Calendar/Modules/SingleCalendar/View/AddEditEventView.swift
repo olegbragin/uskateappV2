@@ -42,11 +42,6 @@ struct AddEditEventView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
                 ToolbarItem(placement: .title) {
                     Text(viewModel.selectedDay ?? Date(), style: .date)
                 }

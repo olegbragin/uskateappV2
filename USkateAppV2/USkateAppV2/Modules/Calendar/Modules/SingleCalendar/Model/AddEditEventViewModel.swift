@@ -10,6 +10,7 @@ import Observation
 
 @Observable
 final class AddEditEventViewModel {
+    var isPresented: Bool = false
     var selectedDay: Date?
     var eventId: Int64 = 0
     var eventName: String = ""
@@ -31,9 +32,7 @@ final class AddEditEventViewModel {
         eventId = 0
         eventName = ""
         selectedColor = nil
-    }
-    
-    func cancel() {
         selectedDay = nil
+        event = nil
     }
 }

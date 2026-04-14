@@ -8,44 +8,83 @@
 import SwiftUI
 
 struct EventListView: View {
-    @Bindable var viewModel: SingleCalendarModel
+    @Bindable var viewModel: EventListViewModel
     
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.editMode) private var editMode
     
     var body: some View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(viewModel.selectedEvents, id: \.self) { event in
-                        NavigationLink(
-                            destination:
-                                AddEditEventView(viewModel: editEventViewModel(for: event))
-                                .presentationDetents([.large])
-                        ) {
-                            Text(event.name)
-                        }
+                    ForEach(viewModel.events, id: \.self) { event in
+                        Button(
+                            action: {
+                                viewModel.prepareAddEditViewModel(with: event)
+                            },
+                            label: {
+                                Text(event.name)
+                            }
+                        )
                         .listRowBackground(Color(event.color))
                     }
                     .onDelete(perform: deleteItems)
                 }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        NavigationLink(
-                            destination:
-                                AddEditEventView(viewModel: viewModel.addEditEventModel)
-                                .presentationDetents([.large])
-                        ) {
-                            Image(systemName: "plus")
+                .environment(\.editMode, editMode)
+                .animation(.easeInOut(duration: 0.3), value: viewModel.isEditing)
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    USEditButton(
+                        isEditing: $viewModel.isEditing,
+                        action: { isEditing in
+                            if isEditing {
+                                viewModel.cancel()
+                            } else {
+                                viewModel.prepareAddEditViewModel(with: .init(name: "", date: Date(), color: ""))
+                            }
+                        },
+                        activeContent: {
+                            AnyView(Text("Cancel"))
+                        },
+                        inactiveContent: {
+                            AnyView(Image(systemName: "plus"))
+                        }
+                    )
+                }
+                ToolbarItem(placement: .title) {
+                    Text(viewModel.selectedDay ?? Date(), style: .date)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    USEditButton(isEditing: $viewModel.isEditing) { isEditing in
+                        if isEditing {
+                            viewModel.commitDelete()
+                        } else {
+                            viewModel.isEditing.toggle()
                         }
                     }
-                    ToolbarItem(placement: .title) {
-                        Text(viewModel.yearModel.selectedDays.first ?? Date(), style: .date)
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        USEditButton()
-                    }
                 }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(isPresented: $viewModel.addEditEventModel.isPresented) {
+                AddEditEventView(viewModel: viewModel.addEditEventModel)
+                    .presentationDetents([.large])
+            }
+        }
+        .onChange(of: viewModel.addEditEventModel.isPresented) {
+            if $0 != $1, !$1 {
+                viewModel.addEditEventModel.reset()
+                viewModel.cancel()
+            }
+        }
+        .onChange(of: viewModel.addEditEventModel.event) {
+            if $0 != $1, let eventToCommit = $1 {
+                viewModel.apply(with: eventToCommit)
+            }
+        }
+        .onChange(of: viewModel.isEditing) {
+            if $0 != $1 {
+                editMode?.wrappedValue = $1 ? .active : .inactive
             }
         }
         .presentationDetents([.medium, .large])
@@ -53,19 +92,6 @@ struct EventListView: View {
     }
 
     private func deleteItems(offsets: IndexSet) {
-        Task {
-            try await viewModel.removeEvents(ids: offsets.map {
-                viewModel.selectedEvents[$0].id
-            })
-        }
-    }
-    
-    private func editEventViewModel(for event: EventDataSource) -> AddEditEventViewModel {
-        let editEventViewModel = viewModel.addEditEventModel
-        editEventViewModel.selectedDay = viewModel.yearModel.selectedDays.first
-        editEventViewModel.eventName = event.name
-        editEventViewModel.eventId = event.id
-        editEventViewModel.selectedColor = ColorOption(event.color)
-        return editEventViewModel
+        viewModel.removeEvents(at: offsets)
     }
 }

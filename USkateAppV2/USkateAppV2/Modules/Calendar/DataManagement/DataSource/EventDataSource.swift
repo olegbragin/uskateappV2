@@ -31,6 +31,9 @@ struct EventDataSource: Identifiable, Hashable {
 
 extension EventDataSource: Equatable {
     static func == (lhs: EventDataSource, rhs: EventDataSource) -> Bool {
-        lhs.id == rhs.id && lhs.name == rhs.name && lhs.date == rhs.date
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.date == rhs.date &&
+        lhs.color == rhs.color
     }
 }
