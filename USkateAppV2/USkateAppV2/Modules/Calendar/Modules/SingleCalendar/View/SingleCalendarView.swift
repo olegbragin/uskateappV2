@@ -58,7 +58,7 @@ struct SingleCalendarView: View {
                 }
             }
         }
-        .task {
+        .task(id: viewModel.calendarId) {
             try? await viewModel.fetch()
         }
         .sheet(isPresented: $viewModel.isEditSheetPresented) {

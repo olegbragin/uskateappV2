@@ -35,8 +35,16 @@ final class SingleCalendarModel {
     
     var selectedEvents: [EventDataSource] {
         guard !yearModel.selectedDays.isEmpty else { return [] }
-        return originalEvents.filter {
-            yearModel.selectedDays.contains($0.date)
+        return originalEvents.filter { event in
+            yearModel.selectedDays.contains { date in
+                let dayDate = event.date
+                let eventDateComponents = dataProvider.dateComponents(forDate: dayDate)
+                let dayComponents = dataProvider.dateComponents(forDate: date)
+                return
+                    dayComponents.day == eventDateComponents.day &&
+                    dayComponents.month == eventDateComponents.month &&
+                    dayComponents.year == eventDateComponents.year
+            }
         }
     }
     
@@ -108,7 +116,7 @@ final class SingleCalendarModel {
     func apply(events: [EventDataSource], action: Action) {
         switch action {
         case .change:
-            let newEvents = mergeSetsByID(originalEvents, with: Set(events))
+            let newEvents = mergeSetsByID(Set(originalEvents), with: Set(events))
             originalEvents = newEvents
             updateYearModel(with: originalEvents)
         case .delete:
