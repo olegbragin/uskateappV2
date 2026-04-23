@@ -23,7 +23,12 @@ struct EventListView: View {
                                 viewModel.prepareAddEditViewModel(with: event)
                             },
                             label: {
-                                Text(event.name)
+                                HStack {
+                                    Text(event.name)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .frame(minWidth: 0, maxWidth: .infinity)
                             }
                         )
                         .listRowBackground(Color(event.color))
@@ -41,7 +46,7 @@ struct EventListView: View {
                             if isEditing {
                                 viewModel.cancel()
                             } else {
-                                viewModel.prepareAddEditViewModel(with: .init(name: "", date: Date(), color: ""))
+                                viewModel.prepareAddEditViewModel(with: .init(name: "", date: Date(), color: "", timestamp: UUID()))
                             }
                         },
                         activeContent: {

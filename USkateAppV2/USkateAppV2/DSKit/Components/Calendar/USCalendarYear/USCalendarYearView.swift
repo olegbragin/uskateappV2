@@ -20,7 +20,7 @@ struct USCalendarYearView: View {
                 LazyVGrid(
                     columns: Array(
                         repeating: GridItem(.flexible(), spacing: 12),
-                        count: viewModel.numberOfColumns
+                        count: viewModel.internalNumberOfColumns
                     ),
                     spacing: 32
                 ) {

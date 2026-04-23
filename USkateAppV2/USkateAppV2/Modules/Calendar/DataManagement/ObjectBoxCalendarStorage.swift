@@ -25,20 +25,28 @@ class ObjectBoxCalendarStorage: CalendarStorage {
     
     @discardableResult
     func saveCalendar(_ calendar: CalendarDataSource) async throws -> Int64 {
-        let ppevents = calendar.events.map { event in
-            PPEvent.init(id: UInt64(event.id), name: event.name, color: event.color, date: event.date)
+        do {
+            try calendarEntityBox.put(
+                .init(
+                    id: UInt64(calendar.id),
+                    name: calendar.name,
+                    year: calendar.year,
+                    numberOfColumns: calendar.numberOfColumns
+                )
+            )
+            guard let ppcalendar = try calendarEntityBox.get(calendar.id) else { return -1 }
+            let ppevents = calendar.events.map { event in
+                PPEvent.init(id: UInt64(event.id), name: event.name, color: event.color, date: event.date)
+            }
+            try eventEntityBox.removeAll()
+            try eventEntityBox.put(ppevents)
+            ppcalendar.events.append(contentsOf: ppevents)
+            try ppcalendar.events.applyToDb()
+            return Int64(ppcalendar.id)
+        } catch {
+            print(error)
+            return -1
         }
-        try eventEntityBox.removeAll()
-        try eventEntityBox.put(ppevents)
-        let ppcalendar = try calendarEntityBox.get(calendar.id) ?? PPCalendar(
-            id: UInt64(calendar.id),
-            name: calendar.name,
-            year: calendar.year,
-            numberOfColumns: calendar.numberOfColumns
-        )
-        ppcalendar.events.append(contentsOf: ppevents)
-        try ppcalendar.events.applyToDb()
-        return Int64(try calendarEntityBox.put(ppcalendar))
     }
     
     func removeEvents(_ eventIds: [Int64], calendarId: Int64) async throws {

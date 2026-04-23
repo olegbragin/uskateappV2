@@ -27,10 +27,7 @@ final class EventListViewModel {
     }
     
     func apply(with event: EventDataSource) {
-        if event.id > 0 {
-            guard
-                let eventToReplace = events.first(where: { $0.id == event.id })
-            else { return }
+        if let eventToReplace = events.first(where: { $0.id == event.id || $0.timestamp == event.timestamp }) {
             events.replace([eventToReplace], with: [event])
         } else {
             events.append(event)
@@ -48,6 +45,7 @@ final class EventListViewModel {
         addEditEventModel.eventName = event.name
         addEditEventModel.eventId = event.id
         addEditEventModel.selectedColor = ColorOption(event.color)
+        addEditEventModel.timestamp = event.timestamp
         addEditEventModel.isPresented = true
     }
     

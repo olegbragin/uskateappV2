@@ -15,6 +15,7 @@ final class AddEditEventViewModel {
     var eventId: Int64 = 0
     var eventName: String = ""
     var selectedColor: ColorOption?
+    var timestamp: UUID?
     
     var event: EventDataSource?
     
@@ -24,7 +25,13 @@ final class AddEditEventViewModel {
             !eventName.isEmpty,
             let selectedColor
         else { return false }
-        event = EventDataSource(id: eventId, name: eventName, date: selectedDay, color: selectedColor.colorName)
+        event = EventDataSource(
+            id: eventId,
+            name: eventName,
+            date: selectedDay,
+            color: selectedColor.colorName,
+            timestamp: timestamp
+        )
         return true
     }
     

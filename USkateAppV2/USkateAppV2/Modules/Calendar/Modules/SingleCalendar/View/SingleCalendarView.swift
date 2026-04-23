@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct SingleCalendarView: View {
-    @Bindable var viewModel: SingleCalendarModel
+    private let calendarId: Int64
+    
+    @State private var viewModel = SingleCalendarModel()
+    
+    init(calendarId: Int64) {
+        self.calendarId = calendarId
+    }
     
     var body: some View {
         VStack {
@@ -34,7 +40,7 @@ struct SingleCalendarView: View {
                     systemImage: viewModel.yearModel.selectionMode == .multiple ? "checkmark" : "plus.rectangle.on.rectangle"
                 ) {
                     if viewModel.yearModel.selectionMode == .multiple {
-                        viewModel.commitMultipleChanges()
+                        viewModel.commitMultipleChanges(for: calendarId)
                     } else {
                         viewModel.yearModel.toggleSelectionMode()
                     }
@@ -58,8 +64,8 @@ struct SingleCalendarView: View {
                 }
             }
         }
-        .task(id: viewModel.calendarId) {
-            try? await viewModel.fetch()
+        .task(id: calendarId) {
+            viewModel.fetch(for: calendarId)
         }
         .sheet(isPresented: $viewModel.isEditSheetPresented) {
             if viewModel.yearModel.selectionMode == .single {
@@ -68,7 +74,7 @@ struct SingleCalendarView: View {
         }
         .onChange(of: viewModel.yearModel.numberOfColumns) {
             if $0 != $1 {
-                viewModel.saveCalendar()
+                viewModel.save(for: calendarId)
             }
         }
         .onChange(of: viewModel.yearModel.selectedDays) { _, newValue in
@@ -87,13 +93,14 @@ struct SingleCalendarView: View {
         }
         .onChange(of: viewModel.editListViewModel.eventsToChange) {
             if $0 != $1 {
-                viewModel.apply(events: $1, action: .change)
+                viewModel.apply(events: $1, action: .change, for: calendarId)
             }
         }
         .onChange(of: viewModel.editListViewModel.eventsToDelete) {
             if $0 != $1 {
-                viewModel.apply(events: $1, action: .delete)
+                viewModel.apply(events: $1, action: .delete, for: calendarId)
             }
         }
+        .id(calendarId)
     }
 }

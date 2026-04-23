@@ -16,7 +16,7 @@ struct RootDetailView: View {
             switch selector.selectedItem {
             case .calendar(let id):
                 SingleCalendarView(
-                    viewModel: .init(calendarId: id)
+                    calendarId: id
                 )
             default:
                 Text("Select a calendar from the sidebar")

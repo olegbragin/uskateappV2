@@ -13,9 +13,12 @@ final class USCalendarYearModel {
     
     // Для тактильной отдачи (опционально)
     private let hapticFeedback = UINotificationFeedbackGenerator()
+    private(set) var internalNumberOfColumns: Int = 1
     
-    var numberOfColumns: Int = 1
-    var numberOfCurrentMonth: Int = 1
+    var numberOfColumns: Int {
+        didSet { internalNumberOfColumns = numberOfColumns }
+    }
+    var numberOfCurrentMonth: Int
     var scrollPosition: CGFloat = 0
     
     var selectedDays: Set<Date> = []
@@ -39,6 +42,10 @@ final class USCalendarYearModel {
     func toggleSelectionMode() {
         let currentSelectionMode = selectionMode
         selectionMode = currentSelectionMode == .single ? .multiple : .single
+    }
+    
+    func set(initialNumberOfColumns: Int) {
+        self.internalNumberOfColumns = initialNumberOfColumns
     }
 
     func reset() {
