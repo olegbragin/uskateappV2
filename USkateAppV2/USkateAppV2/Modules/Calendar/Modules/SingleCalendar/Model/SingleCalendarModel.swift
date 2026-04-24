@@ -144,6 +144,11 @@ final class SingleCalendarModel {
         isLegendSheetPresented = false
     }
     
+    func resetSelectedDays() {
+        yearModel.selectedDays = []
+        editListViewModel.cancel()
+    }
+    
     private func mergeSetsByID<T: Hashable & Identifiable>(
         _ originalSet: Set<T>,
         with updates: Set<T>

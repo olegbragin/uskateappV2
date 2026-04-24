@@ -88,7 +88,8 @@ struct SingleCalendarView: View {
         }
         .onChange(of: viewModel.isEditSheetPresented) { oldValue, newValue in
             if oldValue != newValue, !newValue {
-                viewModel.yearModel.selectedDays = []
+                viewModel.resetSelectedDays()
+                
             }
         }
         .onChange(of: viewModel.editListViewModel.eventsToChange) {

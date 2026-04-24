@@ -41,5 +41,7 @@ final class AddEditEventViewModel {
         selectedColor = nil
         selectedDay = nil
         event = nil
+        isPresented = false
+        timestamp = nil
     }
 }

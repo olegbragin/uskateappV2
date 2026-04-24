@@ -59,5 +59,6 @@ final class EventListViewModel {
         events.append(contentsOf: eventsSelectedToDelete)
         eventsSelectedToDelete = []
         isEditing = false
+        addEditEventModel.reset()
     }
 }
