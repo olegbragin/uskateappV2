@@ -47,14 +47,14 @@ struct USCalendarYearView: View {
             .scrollTargetLayout()
             .onAppear {
                 if let index = viewModel.indexOfCurrentMonth {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         proxy.scrollTo(index, anchor: .top)
                     }
                 }
             }
             .onChange(of: viewModel.numberOfColumns) {
                 if let index = viewModel.indexOfCurrentMonth {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         proxy.scrollTo(index, anchor: .top)
                     }
                 }
@@ -67,7 +67,7 @@ struct USCalendarYearView: View {
                 }
             }
             .onChange(of: viewModel.selectedDays) { oldValue, newValue in
-                if oldValue != newValue {
+                if oldValue != newValue, viewModel.selectionMode == .multiple {
                     viewModel.months.forEach {
                         $0.selectedDays = newValue
                     }

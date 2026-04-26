@@ -3,58 +3,62 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #3 in CalendarListView.body.getter:CalendarListView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "USCalendarYearModel.months.getter:USCalendarYearModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+         contextName = "closure #7 in SingleCalendarView.body.getter:SingleCalendarView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "$event">
-            </PersistentString>
-            <PersistentString
-               value = "viewModel.calendarEvents()">
+               value = "viewModel">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in CalendarsViewModel.fetch():CalendarsViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "AddEditEventViewModel.save():AddEditEventViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ObjectBoxCalendarStorageTests.testSaveCalendar():ObjectBoxStorageTests.swift">
+         contextName = "USCalendarYearModel.indexOfCurrentMonth.getter:USCalendarYearModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "storage.calendarEntityBox.all()">
+               value = "months.firstIndex(where: { $0.number == currentMonth })">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #2 in SingleCalendarView.body.getter:SingleCalendarView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "USCalendarWeekModel.select(day:):USCalendarWeekModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in closure #1 in closure #2 in closure #1 in EventListView.body.getter:EventListView.swift">
+         contextName = "closure #1 in RootContentView.body.getter:RootContentView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "editMode?.wrappedValue">
+               value = "$menuViewModel.selection">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in SingleCalendarModel.fetch():SingleCalendarModel.swift">
+         contextName = "CalendarsView.body.getter:CalendarsView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "title">
+            </PersistentString>
+            <PersistentString
+               value = "viewModel">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "CalendarListViewModel.fetch():CalendarListViewModel.swift">
+         contextName = "ObjectBoxCalendarStorage.getCalendar(id:):ObjectBoxCalendarStorage.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in USCalendarMonthView.body.getter:USCalendarMonthView.swift">
+         contextName = "USCalendarProviderTests.testFirstWeekContainsCorrectDays():CalendarProviderTests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "EventDataSource.isExists.getter:EventDataSource.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarModel.selectedEvents.getter:SingleCalendarModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "yearModel.selectedDays">
+            </PersistentString>
+            <PersistentString
+               value = "originalEvents">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "SingleCalendarModel.apply(events:action:):SingleCalendarModel.swift">
@@ -65,7 +69,186 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in SingleCalendarModel.fetch(for:):SingleCalendarModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarModel.prepareEditListViewModel(with:):SingleCalendarModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedDays.first != nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in SingleCalendarDetailView.body.getter:SingleCalendarDetailView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIDevice.current.orientation">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarDetailViewModel.fetch():SingleCalendarDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarView.body.getter:SingleCalendarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in AddEditEventView.body.getter:AddEditEventView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #2 in closure #1 in EventListView.body.getter:EventListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "editMode?.wrappedValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "USCalendarDayModel.init(text:isToday:isInCurrentMonth:columnCount:date:events:isDayNumber:):USCalendarDayModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in EventListView.body.getter:EventListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.addEditEventModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "USCalendarViewModel.handleMagnify(magnification:):USCalendar.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "-sensitivity">
+            </PersistentString>
+            <PersistentString
+               value = "lastColumnCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "EventListViewModel.apply(with:):EventListViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "freestanding macro expansion #1 of expect in module USkateAppV2Tests file ObjectBoxStorageTests.swift line 68 column 9 [inlined]:@__swiftmacro_16USkateAppV2Tests0032ObjectBoxStorageTestsswift_jIADjfMX67_8_6expectfMf_.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedCalendar">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in USCalendarDataProvider.months(forYear:):USCalendarDataProvider.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "calendar.standaloneMonthSymbols">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in CalendarsView.body.getter:CalendarsView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static ObjectBoxCalendarStorageTests.$s16USkateAppV2Tests024ObjectBoxCalendarStorageD0C021testDeleteNonExistentG04TestfMp_17Z12d2aeee615323b0fMu_@Sendable ():@__swiftmacro_16USkateAppV2Tests024ObjectBoxCalendarStorageD0C021testDeleteNonExistentG04TestfMp_.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "storage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarModel.reset():SingleCalendarModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in CalendarsViewModel.fetch():CalendarsViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #7 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isLegendSheetPresented">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in CalendarListView.body.getter:CalendarListView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleCalendarModel.fetch():SingleCalendarModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Task.isCancelled">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in USCalendarMonthView.body.getter:USCalendarMonthView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in SingleCalendarSummaryView.body.getter:SingleCalendarSummaryView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WatchConnectivityProvider.send(message:):WatchConnectivityProvider.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "session.activationState">
+            </PersistentString>
+            <PersistentString
+               value = "session.isPaired">
+            </PersistentString>
+            <PersistentString
+               value = "session.isWatchAppInstalled">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SingleCalendarModel.fetch():SingleCalendarModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in RootDetailView.body.getter:RootDetailView.swift">
+      </ContextState>
+      <ContextState
          contextName = "SingleCalendarModel.init(dto:):SingleCalendarModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in SingleCalendarModel.updateYearModel(with:):SingleCalendarModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #5 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in USCalendarMonthView.body.getter:USCalendarMonthView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in closure #1 in SingleCalendarModel.updateYearModel(with:):SingleCalendarModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CalendarListViewModel.fetch():CalendarListViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in EventListView.body.getter:EventListView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in USCalendarDayView.body.getter:USCalendarDayView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in CalendarsViewModel.fetch():CalendarsViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SingleCalendarView.body.getter:SingleCalendarView.swift">
       </ContextState>
       <ContextState
          contextName = "CalendarsViewModel.selectedTitle.getter:CalendarsViewModel.swift">
@@ -82,113 +265,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "freestanding macro expansion #1 of expect in module USkateAppV2Tests file ObjectBoxStorageTests.swift line 68 column 9 [inlined]:@__swiftmacro_16USkateAppV2Tests0032ObjectBoxStorageTestsswift_jIADjfMX67_8_6expectfMf_.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "fetchedCalendar">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "USCalendarProviderTests.testFirstWeekContainsCorrectDays():CalendarProviderTests.swift">
-      </ContextState>
-      <ContextState
-         contextName = "CalendarDataSource.init(_:):CalendarDataSource.swift">
-      </ContextState>
-      <ContextState
-         contextName = "USCalendarDayModel.init(text:isToday:isInCurrentMonth:columnCount:date:events:isDayNumber:):USCalendarDayModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in USCalendarDataProvider.months(forYear:):USCalendarDataProvider.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "calendar.standaloneMonthSymbols">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "WatchConnectivityProvider.send(message:):WatchConnectivityProvider.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "session.isPaired">
-            </PersistentString>
-            <PersistentString
-               value = "session.activationState">
-            </PersistentString>
-            <PersistentString
-               value = "session.isWatchAppInstalled">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in RootContentView.body.getter:RootContentView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "$menuViewModel.selection">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleCalendarDetailViewModel.fetch():SingleCalendarDetailViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in USPopoverView.body.getter:USPopoverView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in USCalendarWeekModel.init(weekProvider:):USCalendarWeekModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "CalendarsView.body.getter:CalendarsView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "title">
-            </PersistentString>
-            <PersistentString
-               value = "viewModel">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "USCalendarYearModel.indexOfCurrentMonth.getter:USCalendarYearModel.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "months.firstIndex(where: { $0.number == currentMonth })">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in USCalendarDayView.body.getter:USCalendarDayView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "static ObjectBoxCalendarStorageTests.$s16USkateAppV2Tests024ObjectBoxCalendarStorageD0C021testDeleteNonExistentG04TestfMp_17Z12d2aeee615323b0fMu_@Sendable ():@__swiftmacro_16USkateAppV2Tests024ObjectBoxCalendarStorageD0C021testDeleteNonExistentG04TestfMp_.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "storage">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleCalendarView.body.getter:SingleCalendarView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewModel">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in closure #1 in CalendarsViewModel.fetch():CalendarsViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in SingleCalendarSummaryView.body.getter:SingleCalendarSummaryView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in AddEditEventView.body.getter:AddEditEventView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ObjectBoxCalendarStorage.getCalendar(id:):ObjectBoxCalendarStorage.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in CalendarsView.body.getter:CalendarsView.swift">
+         contextName = "closure #3 in CalendarsView.body.getter:CalendarsView.swift">
          <PersistentStrings>
             <PersistentString
                value = "title">
@@ -196,20 +273,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #7 in SingleCalendarView.body.getter:SingleCalendarView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "isLegendSheetPresented">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in SingleCalendarDetailView.body.getter:SingleCalendarDetailView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "UIDevice.current.orientation">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "USCalendarYearModel.months.getter:USCalendarYearModel.swift">
       </ContextState>
       <ContextState
          contextName = "AddEditEventView.saveProfile():AddEditEventView.swift">
@@ -223,12 +287,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #7 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+         contextName = "AddEditEventViewModel.save():AddEditEventViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #6 in SingleCalendarView.body.getter:SingleCalendarView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ObjectBoxCalendarStorageTests.testSaveCalendar():ObjectBoxStorageTests.swift">
          <PersistentStrings>
             <PersistentString
-               value = "viewModel">
+               value = "storage.calendarEntityBox.all()">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in USPopoverView.body.getter:USPopoverView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in USCalendarWeekModel.init(weekProvider:):USCalendarWeekModel.swift">
       </ContextState>
       <ContextState
          contextName = "SingleCalendarModel.changeEvent(_:):SingleCalendarModel.swift">
@@ -239,23 +315,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "USCalendarViewModel.handleMagnify(magnification:):USCalendar.swift">
+         contextName = "closure #2 in SingleCalendarView.body.getter:SingleCalendarView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "-sensitivity">
+               value = "$event">
             </PersistentString>
             <PersistentString
-               value = "lastColumnCount">
+               value = "viewModel.calendarEvents()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #3 in CalendarsView.body.getter:CalendarsView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "title">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "USCalendarPinchToZoomGestureModel.handleMagnify(magnification:velocity:gestureDuration:didChange:):USCalendarPinchToZoomGestureModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CalendarDataSource.init(_:):CalendarDataSource.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in USCalendarMonthProvider.getCalendarWeeks(ofMonth:ofYear:events:):USCalendarMonthProvider.swift">
@@ -269,21 +343,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in closure #1 in closure #1 in SingleCalendarModel.updateYearModel(with:):SingleCalendarModel.swift">
+         contextName = "USCalendarWeekModel.select(day:):USCalendarWeekModel.swift">
       </ContextState>
       <ContextState
-         contextName = "USCalendarPinchToZoomGestureModel.handleMagnify(magnification:velocity:gestureDuration:didChange:):USCalendarPinchToZoomGestureModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in EventListView.body.getter:EventListView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "viewModel.addEditEventModel">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #2 in closure #1 in closure #1 in SingleCalendarModel.updateYearModel(with:):SingleCalendarModel.swift">
+         contextName = "closure #1 in closure #2 in SingleCalendarView.body.getter:SingleCalendarView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

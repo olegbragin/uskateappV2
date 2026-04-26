@@ -82,7 +82,7 @@ struct SingleCalendarView: View {
                 if let selectedColor = viewModel.selectedColor {
                     viewModel.changeEvent(.init(name: "Event1", date: selectedDay, color: selectedColor.colorName))
                 }
-            } else {
+            } else if !newValue.isEmpty {
                 viewModel.prepareEditListViewModel(with: newValue)
             }
         }
