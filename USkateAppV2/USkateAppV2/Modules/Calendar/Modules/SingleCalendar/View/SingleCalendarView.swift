@@ -17,37 +17,39 @@ struct SingleCalendarView: View {
     }
     
     var body: some View {
-        VStack {
-            if viewModel.isLoading {
-                ProgressView {
-                    Text("Loading")
+        ZStack {
+            VStack {
+                if viewModel.isLoading {
+                    ProgressView {
+                        Text("Loading")
+                    }
+                } else {
+                    if viewModel.daySelectionManager.selectionMode == .multiple {
+                        ColorPickerView(selectedColor: $viewModel.selectedColor)
+                    }
+                    USCalendarYearView(
+                        viewModel: viewModel.yearModel
+                    )
                 }
-            } else {
-                if viewModel.yearModel.selectionMode == .multiple {
-                    ColorPickerView(selectedColor: $viewModel.selectedColor)
-                }
-                USCalendarYearView(
-                    viewModel: viewModel.yearModel
-                )
             }
+            .padding(6)
         }
-        .padding(6)
         .navigationTitle(viewModel.label)
         .toolbar {
             ToolbarItem {
                 Button(
-                    viewModel.yearModel.selectionMode == .multiple ? "Save" : "Multiselect",
-                    systemImage: viewModel.yearModel.selectionMode == .multiple ? "checkmark" : "plus.rectangle.on.rectangle"
+                    viewModel.daySelectionManager.selectionMode == .multiple ? "Save" : "Multiselect",
+                    systemImage: viewModel.daySelectionManager.selectionMode == .multiple ? "checkmark" : "plus.rectangle.on.rectangle"
                 ) {
-                    if viewModel.yearModel.selectionMode == .multiple {
+                    if viewModel.daySelectionManager.selectionMode == .multiple {
                         viewModel.commitMultipleChanges(for: calendarId)
                     } else {
-                        viewModel.yearModel.toggleSelectionMode()
+                        viewModel.daySelectionManager.toggleSelectionMode()
                     }
                 }
             }
             ToolbarItem {
-                if viewModel.yearModel.selectionMode == .multiple {
+                if viewModel.daySelectionManager.selectionMode == .multiple {
                     Button("Cancel") {
                         viewModel.cancelMultipleChanges()
                     }
@@ -67,18 +69,18 @@ struct SingleCalendarView: View {
         .task(id: calendarId) {
             viewModel.fetch(for: calendarId)
         }
-        .sheet(isPresented: $viewModel.isEditSheetPresented) {
-            if viewModel.yearModel.selectionMode == .single {
-                EventListView(viewModel: viewModel.editListViewModel)
-            }
-        }
+//        .sheet(isPresented: $viewModel.isEditSheetPresented) {
+//            if viewModel.daySelectionManager.selectionMode == .single {
+//                EventListView(viewModel: viewModel.editListViewModel)
+//            }
+//        }
         .onChange(of: viewModel.yearModel.numberOfColumns) {
             if $0 != $1 {
                 viewModel.save(for: calendarId)
             }
         }
-        .onChange(of: viewModel.yearModel.selectedDays) { _, newValue in
-            if viewModel.yearModel.selectionMode == .multiple, let selectedDay = newValue.first {
+        .onChange(of: viewModel.daySelectionManager.selectedDays) { _, newValue in
+            if viewModel.daySelectionManager.selectionMode == .multiple, let selectedDay = newValue.first {
                 if let selectedColor = viewModel.selectedColor {
                     viewModel.changeEvent(.init(name: "Event1", date: selectedDay, color: selectedColor.colorName))
                 }
@@ -89,7 +91,6 @@ struct SingleCalendarView: View {
         .onChange(of: viewModel.isEditSheetPresented) { oldValue, newValue in
             if oldValue != newValue, !newValue {
                 viewModel.resetSelectedDays()
-                
             }
         }
         .onChange(of: viewModel.editListViewModel.eventsToChange) {

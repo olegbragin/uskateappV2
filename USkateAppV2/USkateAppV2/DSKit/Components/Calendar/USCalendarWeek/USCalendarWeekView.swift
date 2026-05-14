@@ -26,21 +26,16 @@ struct USCalendarWeekView: View {
                 .simultaneousGesture(
                     LongPressGesture()
                         .onEnded { _ in
-                            viewModel.selectionMode = .multiple
+                            viewModel.daySelectionManager.selectionMode = .multiple
                             hapticFeedback.notificationOccurred(.success)
                         },
-                    isEnabled: viewModel.selectionMode == .single
+                    isEnabled: viewModel.daySelectionManager.selectionMode == .single
                 )
             }
         }
-        .onChange(of: viewModel.selectionMode) { oldValue, newValue in
+        .onChange(of: viewModel.daySelectionManager.selectionMode) { oldValue, newValue in
             if oldValue != newValue, newValue == .multiple {
                 hapticFeedback.notificationOccurred(.success)
-            }
-        }
-        .onChange(of: viewModel.selectedDays) { oldValue, newValue in
-            if oldValue != newValue {
-                viewModel.selectedDays = newValue
             }
         }
     }
@@ -59,8 +54,9 @@ struct USCalendarWeekView: View {
                     .init(date: Date(), number: 45, isInCurrentMonth: true, isToday: false),
                     .init(date: Date(), number: 44, isInCurrentMonth: true, isToday: false),
                     .init(date: Date(), number: 45, isInCurrentMonth: true, isToday: true),
-                ]
-            )
+                ],
+            ),
+            daySelectionManager: USCalendarDaySelectionManager()
         )
     )
 }

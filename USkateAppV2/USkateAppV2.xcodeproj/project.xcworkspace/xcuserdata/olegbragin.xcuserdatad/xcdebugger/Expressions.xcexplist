@@ -113,6 +113,9 @@
          contextName = "USCalendarDayModel.init(text:isToday:isInCurrentMonth:columnCount:date:events:isDayNumber:):USCalendarDayModel.swift">
       </ContextState>
       <ContextState
+         contextName = "EventListViewModel.apply(with:):EventListViewModel.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in closure #1 in closure #1 in EventListView.body.getter:EventListView.swift">
          <PersistentStrings>
             <PersistentString
@@ -133,9 +136,6 @@
       </ContextState>
       <ContextState
          contextName = "closure #4 in SingleCalendarView.body.getter:SingleCalendarView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "EventListViewModel.apply(with:):EventListViewModel.swift">
       </ContextState>
       <ContextState
          contextName = "freestanding macro expansion #1 of expect in module USkateAppV2Tests file ObjectBoxStorageTests.swift line 68 column 9 [inlined]:@__swiftmacro_16USkateAppV2Tests0032ObjectBoxStorageTestsswift_jIADjfMX67_8_6expectfMf_.swift">
@@ -204,13 +204,13 @@
          contextName = "WatchConnectivityProvider.send(message:):WatchConnectivityProvider.swift">
          <PersistentStrings>
             <PersistentString
+               value = "session.isWatchAppInstalled">
+            </PersistentString>
+            <PersistentString
                value = "session.activationState">
             </PersistentString>
             <PersistentString
                value = "session.isPaired">
-            </PersistentString>
-            <PersistentString
-               value = "session.isWatchAppInstalled">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -327,6 +327,11 @@
       </ContextState>
       <ContextState
          contextName = "USCalendarPinchToZoomGestureModel.handleMagnify(magnification:velocity:gestureDuration:didChange:):USCalendarPinchToZoomGestureModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "accumulatedDelta">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "CalendarDataSource.init(_:):CalendarDataSource.swift">

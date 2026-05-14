@@ -8,12 +8,13 @@
 import Foundation
 import Observation
 
+@MainActor
 @Observable
 final class AddEditEventViewModel {
     var isPresented: Bool = false
     var selectedDay: Date?
     var eventId: Int64 = 0
-    var eventName: String = ""
+    var eventName: String = "1"
     var selectedColor: ColorOption?
     var timestamp: UUID?
     

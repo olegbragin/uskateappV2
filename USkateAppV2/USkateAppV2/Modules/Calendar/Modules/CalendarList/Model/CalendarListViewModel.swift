@@ -16,6 +16,7 @@ final class CalendarListViewModel {
     var addEditCalendarViewModel = AddEditCalendarViewModel()
     var isAddEditSheetPresented = false
     var isEditing = false
+    var isLoading = false
     
     init(manager: CalendarManager = .init()) {
         self.manager = manager
@@ -35,10 +36,12 @@ final class CalendarListViewModel {
     }
     
     func addCalendar(with name: String) {
+        isLoading = true
         Task {
             let newCalendar = try await manager.createCalendar(name: name, year: 2026, numberOfColumns: 3)
             await MainActor.run {
                 self.calendars.append(newCalendar)
+                isLoading = false
             }
         }
     }

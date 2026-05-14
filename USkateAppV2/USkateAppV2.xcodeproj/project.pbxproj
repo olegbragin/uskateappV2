@@ -30,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "USkateAppV2Watch Watch App.app"; path = "/Users/olegbragin/Documents/CrucialSoftware/OSXDevelopment/USkate/uskateappV2/USkateAppV2/build/Debug-watchos/USkateAppV2Watch Watch App.app"; sourceTree = "<absolute>"; };
 		D76F495A2EA8306A00BFF757 /* USkateAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USkateAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76F496B2EA8306B00BFF757 /* USkateAppV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USkateAppV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76F49752EA8306B00BFF757 /* USkateAppV2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USkateAppV2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,13 +93,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D747F13B2F1E9E7F00C8B2BC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		D76F49512EA8306A00BFF757 = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +100,7 @@
 				D76F495C2EA8306A00BFF757 /* USkateAppV2 */,
 				D76F496E2EA8306B00BFF757 /* USkateAppV2Tests */,
 				D76F49782EA8306B00BFF757 /* USkateAppV2UITests */,
-				D747F13B2F1E9E7F00C8B2BC /* Frameworks */,
 				D76F495B2EA8306A00BFF757 /* Products */,
-				D7B6DA542F66F67E00810BBC /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,14 +112,6 @@
 				D76F49752EA8306B00BFF757 /* USkateAppV2UITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		D7B6DA542F66F67E00810BBC /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				D716C8F12ECA1267006DA4F8 /* USkateAppV2Watch Watch App.app */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

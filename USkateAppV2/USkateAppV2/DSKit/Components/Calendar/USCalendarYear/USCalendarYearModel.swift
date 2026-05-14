@@ -18,11 +18,9 @@ final class USCalendarYearModel {
     var numberOfColumns: Int {
         didSet { internalNumberOfColumns = numberOfColumns }
     }
-    var numberOfCurrentMonth: Int
+    var numberOfCurrentMonth: Int = 0
     var scrollPosition: CGFloat = 0
     
-    var selectedDays: Set<Date> = []
-    var selectionMode: USCalendarSelectionMode = .single
     var isLongPressEnabled: Bool = false
     
     var indexOfCurrentMonth: Int? {
@@ -31,17 +29,9 @@ final class USCalendarYearModel {
 
     var months: [USCalendarMonthModel] = []
     
-    init(months: [USCalendarMonthDataSource], numberOfCurrentMonth: Int, numberOfColumns: Int = 1) {
+    init(numberOfCurrentMonth: Int = 0, numberOfColumns: Int = 1) {
         self.numberOfColumns = numberOfColumns
         self.numberOfCurrentMonth = numberOfCurrentMonth
-        self.months = months.map {
-            .init(dto: $0)
-        }
-    }
-    
-    func toggleSelectionMode() {
-        let currentSelectionMode = selectionMode
-        selectionMode = currentSelectionMode == .single ? .multiple : .single
     }
     
     func set(initialNumberOfColumns: Int) {

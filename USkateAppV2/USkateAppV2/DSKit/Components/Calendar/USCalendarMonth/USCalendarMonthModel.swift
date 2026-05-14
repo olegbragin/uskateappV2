@@ -16,17 +16,15 @@ final class USCalendarMonthModel: Identifiable {
     let weekDaySymbols: [String]
     let weeks: [USCalendarWeekModel]
     
-    var selectedDays: Set<Date> = []
-    var selectionMode: USCalendarSelectionMode = .single
     var isLongPressed: Bool = false
         
-    init(dto: USCalendarMonthDataSource) {
+    init(dto: USCalendarMonthDataSource, daySelectionManager: USCalendarDaySelectionManager) {
         self.id = dto.number
         self.label = dto.label
         self.number = dto.number
         self.weekDaySymbols = dto.weekDaySymbols
         self.weeks = dto.weeks.map {
-            .init(dto: $0)
+            .init(dto: $0, daySelectionManager: daySelectionManager)
         }
     }
 }

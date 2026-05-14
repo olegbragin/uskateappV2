@@ -25,9 +25,11 @@ final class SingleCalendarModel {
     
     private(set) var label: String = ""
     
+    let daySelectionManager = USCalendarDaySelectionManager()
+    
     var selectedColor: ColorOption?
     
-    var yearModel = USCalendarYearModel(months: [], numberOfCurrentMonth: 1)
+    var yearModel = USCalendarYearModel()
     var legendViewModel = SingleCalendarSummaryModel(year: 2026, events: [])
     var editListViewModel = EventListViewModel()
     
@@ -36,9 +38,9 @@ final class SingleCalendarModel {
     var isLegendSheetPresented = false
     
     var selectedEvents: [EventDataSource] {
-        guard !yearModel.selectedDays.isEmpty else { return [] }
+        guard !daySelectionManager.selectedDays.isEmpty else { return [] }
         return originalEvents.filter { event in
-            yearModel.selectedDays.contains { date in
+            daySelectionManager.selectedDays.contains { date in
                 let dayDate = event.date
                 let eventDateComponents = dataProvider.dateComponents(forDate: dayDate)
                 let dayComponents = dataProvider.dateComponents(forDate: date)
@@ -57,7 +59,7 @@ final class SingleCalendarModel {
             addedEvents.insert(event)
         }
         updateYearModel(with: originalEvents.union(addedEvents))
-        yearModel.selectedDays = []
+        daySelectionManager.selectedDays = []
     }
     
     func fetch(for calendarId: Int64) {
@@ -76,7 +78,7 @@ final class SingleCalendarModel {
             await MainActor.run {
                 label = calendar.name
                 yearModel.months = dataProvider.months(forYear: calendar.year).map {
-                    USCalendarMonthModel(dto: $0)
+                    USCalendarMonthModel(dto: $0, daySelectionManager: daySelectionManager)
                 }
                 yearModel.numberOfCurrentMonth = dataProvider.numberOfCurrentMonth
                 yearModel.set(initialNumberOfColumns: calendar.numberOfColumns)
@@ -105,14 +107,14 @@ final class SingleCalendarModel {
         originalEvents = allEvents
         
         updateYearModel(with: allEvents)
-        yearModel.toggleSelectionMode()
+        daySelectionManager.toggleSelectionMode()
         addedEvents = []
         save(for: calendarId)
     }
     
     func cancelMultipleChanges() {
         updateYearModel(with: originalEvents)
-        yearModel.toggleSelectionMode()
+        daySelectionManager.toggleSelectionMode()
         addedEvents = []
     }
     
@@ -134,7 +136,7 @@ final class SingleCalendarModel {
             updateYearModel(with: originalEvents)
         }
         save(for: calendarId)
-        prepareEditListViewModel(with: yearModel.selectedDays)
+        prepareEditListViewModel(with: daySelectionManager.selectedDays)
     }
     
     func reset() {
@@ -145,7 +147,7 @@ final class SingleCalendarModel {
     }
     
     func resetSelectedDays() {
-        yearModel.selectedDays = []
+        daySelectionManager.selectedDays = []
         editListViewModel.cancel()
     }
     

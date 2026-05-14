@@ -14,67 +14,63 @@ struct EventListView: View {
     @Environment(\.editMode) private var editMode
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                List {
-                    ForEach(viewModel.events, id: \.self) { event in
-                        Button(
-                            action: {
-                                viewModel.prepareAddEditViewModel(with: event)
-                            },
-                            label: {
-                                HStack {
-                                    Text(event.name)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                }
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                            }
-                        )
-                        .listRowBackground(Color(event.color))
-                    }
-                    .onDelete(perform: deleteItems)
-                }
-                .environment(\.editMode, editMode)
-                .animation(.easeInOut(duration: 0.3), value: viewModel.isEditing)
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    USEditButton(
-                        isEditing: $viewModel.isEditing,
-                        action: { isEditing in
-                            if isEditing {
-                                viewModel.cancel()
-                            } else {
-                                viewModel.prepareAddEditViewModel(with: .init(name: "", date: Date(), color: "", timestamp: UUID()))
-                            }
+        VStack {
+            List {
+                ForEach(viewModel.events, id: \.self) { event in
+                    Button(
+                        action: {
+                            viewModel.prepareAddEditViewModel(with: event)
                         },
-                        activeContent: {
-                            AnyView(Text("Cancel"))
-                        },
-                        inactiveContent: {
-                            AnyView(Image(systemName: "plus"))
+                        label: {
+                            HStack {
+                                Text(event.name)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity)
                         }
                     )
+                    .listRowBackground(Color(event.color))
                 }
-                ToolbarItem(placement: .title) {
-                    Text(viewModel.selectedDay ?? Date(), style: .date)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    USEditButton(isEditing: $viewModel.isEditing) { isEditing in
+                .onDelete(perform: deleteItems)
+            }
+            .environment(\.editMode, editMode)
+            .animation(.easeInOut(duration: 0.3), value: viewModel.isEditing)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                USEditButton(
+                    isEditing: $viewModel.isEditing,
+                    action: { isEditing in
                         if isEditing {
-                            viewModel.commitDelete()
+                            viewModel.cancel()
                         } else {
-                            viewModel.isEditing.toggle()
+                            viewModel.prepareAddEditViewModel(with: .init(name: "", date: Date(), color: "", timestamp: UUID()))
                         }
+                    },
+                    activeContent: {
+                        AnyView(Text("Cancel"))
+                    },
+                    inactiveContent: {
+                        AnyView(Image(systemName: "plus"))
+                    }
+                )
+            }
+            ToolbarItem(placement: .title) {
+                Text(viewModel.selectedDay ?? Date(), style: .date)
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                USEditButton(isEditing: $viewModel.isEditing) { isEditing in
+                    if isEditing {
+                        viewModel.commitDelete()
+                    } else {
+                        viewModel.isEditing.toggle()
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(isPresented: $viewModel.addEditEventModel.isPresented) {
-                AddEditEventView(viewModel: viewModel.addEditEventModel)
-                    .presentationDetents([.large])
-            }
+        }
+        .sheet(isPresented: $viewModel.addEditEventModel.isPresented) {
+            AddEditEventView(viewModel: viewModel.addEditEventModel)
         }
         .onChange(of: viewModel.addEditEventModel.isPresented) {
             if $0 != $1, !$1 {
@@ -92,8 +88,6 @@ struct EventListView: View {
                 editMode?.wrappedValue = $1 ? .active : .inactive
             }
         }
-        .presentationDetents([.medium, .large])
-        .presentationDragIndicator(.visible)
     }
 
     private func deleteItems(offsets: IndexSet) {

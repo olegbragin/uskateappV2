@@ -29,16 +29,6 @@ struct USCalendarYearView: View {
                         USCalendarMonthView(
                             viewModel: month
                         )
-                        .onChange(of: month.selectedDays) { oldValue, newValue in
-                            if oldValue != newValue {
-                                viewModel.selectedDays = newValue
-                            }
-                        }
-                        .onChange(of: month.selectionMode) { oldValue, newValue in
-                            if oldValue != newValue {
-                                viewModel.selectionMode = newValue
-                            }
-                        }
                         .id(index)
                     }
                 }
@@ -56,20 +46,6 @@ struct USCalendarYearView: View {
                 if let index = viewModel.indexOfCurrentMonth {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         proxy.scrollTo(index, anchor: .top)
-                    }
-                }
-            }
-            .onChange(of: viewModel.selectionMode) { oldValue, newValue in
-                if oldValue != newValue {
-                    viewModel.months.forEach {
-                        $0.selectionMode = newValue
-                    }
-                }
-            }
-            .onChange(of: viewModel.selectedDays) { oldValue, newValue in
-                if oldValue != newValue, viewModel.selectionMode == .multiple {
-                    viewModel.months.forEach {
-                        $0.selectedDays = newValue
                     }
                 }
             }
